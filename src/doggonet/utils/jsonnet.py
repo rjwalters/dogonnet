@@ -2,12 +2,15 @@
 
 import json
 import subprocess
-import sys
 from pathlib import Path
 from typing import Any
 
 
-def compile_jsonnet(source_file: Path, ext_vars: dict[str, str] | None = None, jpathdir: list[Path] | None = None) -> dict[str, Any]:
+def compile_jsonnet(
+    source_file: Path,
+    ext_vars: dict[str, str] | None = None,
+    jpathdir: list[Path] | None = None,
+) -> dict[str, Any]:
     """Compile a Jsonnet file to JSON.
 
     Args:

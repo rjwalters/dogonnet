@@ -1,8 +1,9 @@
 """Tests for all widget types to ensure they compile correctly."""
 
-import json
-import pytest
 from pathlib import Path
+
+import pytest
+
 from doggonet.utils.jsonnet import compile_jsonnet
 
 
