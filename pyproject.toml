@@ -40,17 +40,54 @@ dev = [
 doggonet = "doggonet.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/Metta-AI/doggonet"
-Documentation = "https://github.com/Metta-AI/doggonet#readme"
-Repository = "https://github.com/Metta-AI/doggonet"
-Issues = "https://github.com/Metta-AI/doggonet/issues"
+Homepage = "https://github.com/rjwalters/dogonnet"
+Documentation = "https://github.com/rjwalters/dogonnet#readme"
+Repository = "https://github.com/rjwalters/dogonnet"
+Issues = "https://github.com/rjwalters/dogonnet/issues"
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
 
-[tool.hatch.build.targets.wheel]
-packages = ["src/doggonet"]
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"*" = ["*.libsonnet"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/",
+    "tests/",
+    "examples/",
+    "docs/",
+    "*.md",
+    "LICENSE",
+    "pyproject.toml",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "-ra",
+]
+
+[tool.coverage.run]
+source = ["src/doggonet"]
+omit = ["tests/*"]
+
+[tool.coverage.report]
+precision = 2
+show_missing = true
+skip_covered = false
 
 [tool.ruff]
 line-length = 120
