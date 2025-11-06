@@ -16,10 +16,26 @@ A Datadog dashboard templating library using Jsonnet - because good dashboards d
 ## Features
 
 - **Jsonnet Templates**: Write dashboards as code using Jsonnet
+- **38 Widget Types**: 100% coverage of all Datadog dashboard widgets
 - **Reusable Components**: Pre-built widgets and layouts for common patterns
 - **Type-Safe**: Pydantic models for dashboard definitions
 - **CLI Tools**: Push, fetch, export, and manage dashboards
 - **Rich Presets**: Opinionated defaults for beautiful dashboards
+- **AI-Friendly**: Comprehensive guides for LLM agents to create dashboards from natural language
+
+## AI Agent Support 🤖
+
+`doggonet` is designed to be easily used by AI agents like Claude, ChatGPT, and others. We provide:
+
+- **[Agent Guide](docs/AGENT_GUIDE.md)** - Comprehensive guide for AI agents with metric-to-widget mapping, decision trees, and templates
+- **[Cookbook](docs/COOKBOOK.md)** - Copy-paste recipes for common dashboard patterns (Golden Signals, RED metrics, business KPIs)
+- **Progressive Disclosure** - Simple one-liners to complex configurations
+- **Semantic Documentation** - Every widget has usage examples and common patterns
+
+**Example AI prompts that work:**
+- "Create a golden signals dashboard for my payment-api service"
+- "Make a business dashboard with revenue, signups, and conversion rate"
+- "Show me CPU and memory trends for my infrastructure"
 
 ## Installation
 
@@ -79,17 +95,25 @@ doggonet fetch my-dashboard-id > existing.json
 ## Documentation
 
 See [docs/](docs/) for detailed documentation:
-- [Widget Reference](docs/WIDGETS.md)
-- [Layout Guide](docs/LAYOUTS.md)
-- [Preset Catalog](docs/PRESETS.md)
-- [API Reference](docs/API.md)
+
+**For AI Agents & Users:**
+- [Agent Guide](docs/AGENT_GUIDE.md) - Complete guide for AI agents with templates, patterns, and decision trees
+- [Cookbook](docs/COOKBOOK.md) - Copy-paste recipes for common use cases
+- [Widget Reference](docs/WIDGETS.md) - All 38 widgets with examples
+- [Preset Catalog](docs/PRESETS.md) - Pre-configured common patterns
+- [Layout Guide](docs/LAYOUTS.md) - Dashboard organization and positioning
+
+**For Developers:**
+- [Design Philosophy](docs/DESIGN.md) - Architecture and principles
+- [API Version](DATADOG_API_VERSION.md) - Datadog API compatibility
 
 ## Examples
 
 Check out [examples/](examples/) for sample dashboards:
-- [examples/basic.jsonnet](examples/basic.jsonnet) - Simple dashboard
-- [examples/service-health.jsonnet](examples/service-health.jsonnet) - Service health dashboard
-- [examples/infrastructure.jsonnet](examples/infrastructure.jsonnet) - Infrastructure monitoring
+- [examples/basic.jsonnet](examples/basic.jsonnet) - Simple dashboard with timeseries widgets
+- [examples/service-health.jsonnet](examples/service-health.jsonnet) - Complete service health monitoring
+- [examples/infrastructure.jsonnet](examples/infrastructure.jsonnet) - Infrastructure monitoring (CPU, memory, disk)
+- [examples/golden-signals.jsonnet](examples/golden-signals.jsonnet) - Google SRE Golden Signals (latency, traffic, errors, saturation)
 
 ## Development
 

@@ -52,6 +52,31 @@ Infrastructure monitoring dashboard:
 doggonet push infrastructure.jsonnet
 ```
 
+### golden-signals.jsonnet
+**The Four Golden Signals from Google SRE:**
+
+A comprehensive dashboard following Google SRE best practices with the four critical metrics for service health:
+
+1. **Latency** - How long requests take (p50, p95, p99 percentiles)
+2. **Traffic** - Request throughput and rate
+3. **Errors** - Error rate and counts by type
+4. **Saturation** - System resource usage (CPU, memory, connections)
+
+**Features:**
+- Clean section headers for each signal
+- SLO markers on relevant metrics
+- Top lists for debugging (error types, resource-heavy hosts)
+- Template variables for easy service/env switching
+
+**Usage:**
+```bash
+# Edit the service and env variables at the top
+# Then compile and push
+doggonet push golden-signals.jsonnet
+```
+
+**AI Prompt:** "Create a golden signals dashboard for my payment-api service"
+
 ## Customizing Examples
 
 All examples are designed to be customized for your specific use case:
