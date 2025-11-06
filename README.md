@@ -1,5 +1,12 @@
 # doggonet 🐶
 
+[![Tests](https://github.com/rjwalters/dogonnet/actions/workflows/test.yml/badge.svg)](https://github.com/rjwalters/dogonnet/actions/workflows/test.yml)
+[![Lint](https://github.com/rjwalters/dogonnet/actions/workflows/lint.yml/badge.svg)](https://github.com/rjwalters/dogonnet/actions/workflows/lint.yml)
+[![codecov](https://codecov.io/gh/rjwalters/dogonnet/branch/main/graph/badge.svg)](https://codecov.io/gh/rjwalters/dogonnet)
+[![PyPI version](https://badge.fury.io/py/doggonet.svg)](https://badge.fury.io/py/doggonet)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A Datadog dashboard templating library using Jsonnet - because good dashboards deserve good tools!
 
 ## Overview
