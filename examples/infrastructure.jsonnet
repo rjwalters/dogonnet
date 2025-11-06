@@ -40,13 +40,11 @@ layouts.grid(
     layouts.row(2, [
       presets.cpuTimeseries(
         'EC2 CPU Utilization',
-        'avg:aws.ec2.cpuutilization{*}',
-        { show_legend: true }
+        'avg:aws.ec2.cpuutilization{*}'
       ),
       presets.memoryTimeseries(
         'Memory Utilization',
-        'avg:system.mem.pct_usable{*}',
-        { show_legend: true }
+        'avg:system.mem.pct_usable{*}'
       ),
     ], height=3),
 
@@ -66,9 +64,10 @@ layouts.grid(
 
     // Row 4: Disk metrics
     layouts.row(8, [
-      presets.diskTimeseries(
+      widgets.timeseries(
         'Disk Usage',
-        'avg:system.disk.used{*}'
+        'avg:system.disk.used{*}',
+        { display_type: 'area', palette: 'purple' }
       ),
       widgets.timeseries(
         'Disk I/O',

@@ -36,15 +36,13 @@ layouts.grid(
 
     // Row 2: Request and error trends
     layouts.row(2, [
-      presets.requestTimeseries(
+      presets.requestRateTimeseries(
         'Request Rate',
-        'sum:http.requests{service:' + service + '}.as_rate()',
-        { show_legend: true }
+        'sum:http.requests{service:' + service + '}.as_rate()'
       ),
-      presets.errorTimeseries(
+      presets.errorRateTimeseries(
         'Error Rate',
-        'sum:http.errors{service:' + service + '}.as_rate()',
-        { show_legend: true }
+        'sum:http.errors{service:' + service + '}.as_rate()'
       ),
     ], height=3),
 
@@ -52,13 +50,11 @@ layouts.grid(
     layouts.row(5, [
       presets.latencyTimeseries(
         'Request Latency',
-        'avg:http.request.duration{service:' + service + '}',
-        { show_legend: true }
+        'avg:http.request.duration{service:' + service + '}'
       ),
-      presets.throughputTimeseries(
+      presets.requestRateTimeseries(
         'Throughput',
-        'sum:http.requests{service:' + service + '}.as_rate()',
-        { show_legend: true }
+        'sum:http.requests{service:' + service + '}.as_rate()'
       ),
     ], height=3),
 
@@ -72,9 +68,10 @@ layouts.grid(
         'Memory Usage',
         'avg:system.mem.used{service:' + service + '}'
       ),
-      presets.diskTimeseries(
+      widgets.timeseries(
         'Disk Usage',
-        'avg:system.disk.used{service:' + service + '}'
+        'avg:system.disk.used{service:' + service + '}',
+        { display_type: 'area', palette: 'purple' }
       ),
     ], height=3),
 
