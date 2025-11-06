@@ -1,8 +1,9 @@
 """Tests for Jsonnet compilation utilities."""
 
 import json
-import pytest
 from pathlib import Path
+
+import pytest
 
 from doggonet.utils.jsonnet import compile_jsonnet, is_jsonnet_file, load_dashboard
 

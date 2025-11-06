@@ -1,6 +1,5 @@
 """Tests for CLI commands."""
 
-import pytest
 from click.testing import CliRunner
 
 from doggonet.cli.main import main

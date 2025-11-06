@@ -2,17 +2,21 @@
 
 import json
 import subprocess
-import sys
 from pathlib import Path
 from typing import Any
 
 
-def compile_jsonnet(source_file: Path, ext_vars: dict[str, str] | None = None) -> dict[str, Any]:
+def compile_jsonnet(
+    source_file: Path,
+    ext_vars: dict[str, str] | None = None,
+    jpathdir: list[Path] | None = None,
+) -> dict[str, Any]:
     """Compile a Jsonnet file to JSON.
 
     Args:
         source_file: Path to Jsonnet file
         ext_vars: External variables to pass to Jsonnet
+        jpathdir: List of directories to search for imports
 
     Returns:
         Compiled JSON as dict
@@ -25,7 +29,16 @@ def compile_jsonnet(source_file: Path, ext_vars: dict[str, str] | None = None) -
         import _jsonnet
 
         ext_vars = ext_vars or {}
-        json_str = _jsonnet.evaluate_file(str(source_file), ext_vars=ext_vars)
+        jpathdir = jpathdir or []
+
+        # Convert Path objects to strings for _jsonnet
+        jpath_strs = [str(p) for p in jpathdir]
+
+        json_str = _jsonnet.evaluate_file(
+            str(source_file),
+            ext_vars=ext_vars,
+            jpathdir=jpath_strs
+        )
         return json.loads(json_str)
     except ImportError:
         pass
@@ -38,6 +51,11 @@ def compile_jsonnet(source_file: Path, ext_vars: dict[str, str] | None = None) -
         if ext_vars:
             for key, value in ext_vars.items():
                 cmd.extend(["--ext-str", f"{key}={value}"])
+
+        # Add jpath directories
+        if jpathdir:
+            for jpath in jpathdir:
+                cmd.extend(["-J", str(jpath)])
 
         result = subprocess.run(cmd, capture_output=True, text=True, check=True)
         return json.loads(result.stdout)

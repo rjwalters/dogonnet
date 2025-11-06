@@ -1,9 +1,9 @@
 """Tests for Datadog client."""
 
-import pytest
-import os
 
-from doggonet.client.dashboard import get_datadog_credentials, DatadogDashboardClient
+import pytest
+
+from doggonet.client.dashboard import DatadogDashboardClient, get_datadog_credentials
 
 
 def test_get_credentials_from_env(mock_datadog_credentials):
