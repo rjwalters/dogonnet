@@ -1376,4 +1376,371 @@
       [if std.objectHas(options, 'template_variables') then 'template_variables']: options.template_variables,
     },
   },
+
+  // ========== BAR CHART WIDGET ==========
+  //
+  // @widget: bar_chart
+  // @purpose: Display categorical data comparison with vertical bars
+  // @use_cases: Service comparison, tag-based comparisons, category analysis
+  //
+  // @simple: widgets.barChart('Requests by Service', 'sum:requests{*} by {service}')
+  //
+  // @options: Customize bar chart display
+  //   - palette: 'dog_classic' (default) | 'warm' | 'cool' | 'purple' | 'orange' | 'gray'
+  //   - xaxis: { scale: 'linear' | 'log' | 'sqrt' }
+  //   - yaxis: { scale: 'linear' | 'log' | 'sqrt', include_zero: true | false }
+  //   - title_size: '16' (default) | '18' | '20'
+  //   - title_align: 'left' (default) | 'center' | 'right'
+  //
+  // @example_moderate:
+  //   widgets.barChart('Response Time by Endpoint', 'avg:response.time{*} by {endpoint}', {
+  //     palette: 'warm',
+  //     yaxis: { scale: 'linear', include_zero: true },
+  //   })
+  //
+  // @note: Bar charts use categorical axes (vs timeseries temporal axes)
+  // @related: toplist, treemap, timeseries
+  // @docs: https://docs.datadoghq.com/dashboards/widgets/bar_chart/
+  //
+  barChart(title, query, options={}):: {
+    definition: {
+      type: 'bar_chart',
+      title: title,
+      title_size: if std.objectHas(options, 'title_size') then options.title_size else '16',
+      title_align: if std.objectHas(options, 'title_align') then options.title_align else 'left',
+      requests: [
+        {
+          formulas: [{ formula: 'query1' }],
+          queries: [
+            {
+              data_source: 'metrics',
+              name: 'query1',
+              query: query,
+            },
+          ],
+          response_format: 'scalar',
+        },
+      ],
+      xaxis: if std.objectHas(options, 'xaxis') then options.xaxis else {
+        scale: 'linear',
+      },
+      yaxis: if std.objectHas(options, 'yaxis') then options.yaxis else {
+        scale: 'linear',
+        include_zero: true,
+      },
+      style: {
+        palette: if std.objectHas(options, 'palette') then options.palette else 'dog_classic',
+      },
+    },
+  },
+
+  // ========== WILDCARD WIDGET ==========
+  //
+  // @widget: wildcard
+  // @purpose: Create custom visualizations using Vega-Lite grammar
+  // @use_cases: Custom charts, advanced visualizations, unique data representations
+  //
+  // @simple: widgets.wildcard('Custom Viz', vegaLiteSpec)
+  //
+  // @options: Customize wildcard widget
+  //   - spec: Vega-Lite specification object (required)
+  //   - title_size: '16' (default) | '18' | '20'
+  //   - title_align: 'left' (default) | 'center' | 'right'
+  //
+  // @example_moderate:
+  //   widgets.wildcard('Custom Chart', {
+  //     mark: 'bar',
+  //     encoding: {
+  //       x: { field: 'service', type: 'nominal' },
+  //       y: { field: 'count', type: 'quantitative' },
+  //     },
+  //   })
+  //
+  // @note: Requires Vega-Lite spec knowledge. See Datadog docs for extensions.
+  // @related: Custom visualizations, advanced graphing
+  // @docs: https://docs.datadoghq.com/dashboards/widgets/wildcard/
+  //
+  wildcard(title, spec, options={}):: {
+    definition: {
+      type: 'wildcard',
+      title: title,
+      title_size: if std.objectHas(options, 'title_size') then options.title_size else '16',
+      title_align: if std.objectHas(options, 'title_align') then options.title_align else 'left',
+      spec: spec,
+    },
+  },
+
+  // ========== SPLIT GRAPH WIDGET ==========
+  //
+  // @widget: split_graph
+  // @purpose: Create repeating graphs - one per tag value
+  // @use_cases: Per-service graphs, per-host visualization, multi-instance monitoring
+  //
+  // @simple: widgets.splitGraph('Metrics per Service', 'avg:cpu{*} by {service}', 'service')
+  //
+  // @options: Customize split graph
+  //   - size: 'xs' | 'sm' | 'md' (default) | 'lg' - Size of individual graphs
+  //   - limit: 10 (default) - Maximum number of graphs to display
+  //   - sort: { order: 'desc' | 'asc', by: 'value' | 'name' }
+  //   - split_config: { split_dimensions: [{ one_graph_per: 'tag_key' }] }
+  //   - title_size: '16' (default) | '18' | '20'
+  //   - title_align: 'left' (default) | 'center' | 'right'
+  //
+  // @example_moderate:
+  //   widgets.splitGraph('CPU per Host', 'avg:system.cpu{*} by {host}', 'host', {
+  //     size: 'sm',
+  //     limit: 20,
+  //     sort: { order: 'desc', by: 'value' },
+  //   })
+  //
+  // @related: timeseries, group
+  // @docs: https://docs.datadoghq.com/dashboards/widgets/split_graph/
+  //
+  splitGraph(title, query, split_by, options={}):: {
+    definition: {
+      type: 'split_graph',
+      title: title,
+      title_size: if std.objectHas(options, 'title_size') then options.title_size else '16',
+      title_align: if std.objectHas(options, 'title_align') then options.title_align else 'left',
+      requests: [
+        {
+          formulas: [{ formula: 'query1' }],
+          queries: [
+            {
+              data_source: 'metrics',
+              name: 'query1',
+              query: query,
+            },
+          ],
+          response_format: 'timeseries',
+        },
+      ],
+      split_config: if std.objectHas(options, 'split_config') then options.split_config else {
+        split_dimensions: [{ one_graph_per: split_by }],
+        limit: if std.objectHas(options, 'limit') then options.limit else 10,
+        sort: if std.objectHas(options, 'sort') then options.sort else { order: 'desc', by: 'value' },
+      },
+      size: if std.objectHas(options, 'size') then options.size else 'md',
+    },
+  },
+
+  // ========== TOPOLOGY MAP WIDGET ==========
+  //
+  // @widget: topology_map
+  // @purpose: Display service relationships and data flow
+  // @use_cases: Service dependencies, architecture visualization, data flow mapping
+  //
+  // @simple: widgets.topologyMap('Service Map', 'my-service')
+  //
+  // @options: Customize topology map
+  //   - filters: ['env:production'] - Filter services
+  //   - data_source: 'service_map' | 'event_stream' | 'network'
+  //   - custom_links: [] - Custom link configurations
+  //   - title_size: '16' (default) | '18' | '20'
+  //   - title_align: 'left' (default) | 'center' | 'right'
+  //
+  // @example_moderate:
+  //   widgets.topologyMap('Production Services', 'web-api', {
+  //     filters: ['env:production', 'team:backend'],
+  //     data_source: 'service_map',
+  //   })
+  //
+  // @related: serviceMap, serviceSummary
+  // @docs: https://docs.datadoghq.com/dashboards/widgets/topology_map/
+  //
+  topologyMap(title, service, options={}):: {
+    definition: {
+      type: 'topology_map',
+      title: title,
+      title_size: if std.objectHas(options, 'title_size') then options.title_size else '16',
+      title_align: if std.objectHas(options, 'title_align') then options.title_align else 'left',
+      requests: [
+        {
+          query: {
+            data_source: if std.objectHas(options, 'data_source') then options.data_source else 'service_map',
+            service: service,
+            [if std.objectHas(options, 'filters') then 'filters']: options.filters,
+          },
+          request_type: 'topology',
+        },
+      ],
+      [if std.objectHas(options, 'custom_links') then 'custom_links']: options.custom_links,
+    },
+  },
+
+  // ========== SANKEY WIDGET ==========
+  //
+  // @widget: sankey
+  // @purpose: Display user flow and pathways (Product Analytics)
+  // @use_cases: User journey visualization, navigation flow, conversion paths
+  //
+  // @simple: widgets.sankey('User Flow', 'source:rum @view.name:*')
+  //
+  // @options: Customize sankey diagram
+  //   - show_n_views: 5 (default) - Number of views per step
+  //   - sort_by: 'session_count' (default) | 'view_count'
+  //   - title_size: '16' (default) | '18' | '20'
+  //   - title_align: 'left' (default) | 'center' | 'right'
+  //
+  // @example_moderate:
+  //   widgets.sankey('Checkout Flow', 'source:rum @view.name:checkout*', {
+  //     show_n_views: 10,
+  //     sort_by: 'session_count',
+  //   })
+  //
+  // @note: Requires Product Analytics / RUM data
+  // @related: funnel, retention
+  // @docs: https://docs.datadoghq.com/dashboards/widgets/sankey/
+  //
+  sankey(title, query, options={}):: {
+    definition: {
+      type: 'sankey',
+      title: title,
+      title_size: if std.objectHas(options, 'title_size') then options.title_size else '16',
+      title_align: if std.objectHas(options, 'title_align') then options.title_align else 'left',
+      requests: [
+        {
+          query: {
+            data_source: 'rum',
+            query_string: query,
+          },
+          request_type: 'sankey',
+        },
+      ],
+      show_n_views: if std.objectHas(options, 'show_n_views') then options.show_n_views else 5,
+      sort_by: if std.objectHas(options, 'sort_by') then options.sort_by else 'session_count',
+    },
+  },
+
+  // ========== RETENTION WIDGET ==========
+  //
+  // @widget: retention
+  // @purpose: Measure user retention over time (Product Analytics)
+  // @use_cases: User engagement tracking, cohort analysis, feature stickiness
+  //
+  // @simple: widgets.retention('User Retention', 'start_event', 'return_event')
+  //
+  // @options: Customize retention analysis
+  //   - retention_type: 'n_day' (default) | 'unbounded'
+  //   - period: 'daily' (default) | 'weekly' | 'monthly'
+  //   - cohort_size: 'all' (default) | number - Cohort size to analyze
+  //   - title_size: '16' (default) | '18' | '20'
+  //   - title_align: 'left' (default) | 'center' | 'right'
+  //
+  // @example_moderate:
+  //   widgets.retention('Feature Adoption', '@view.name:signup', '@action.name:feature_used', {
+  //     retention_type: 'n_day',
+  //     period: 'weekly',
+  //   })
+  //
+  // @note: Requires Product Analytics with usr.id attribute set
+  // @related: funnel, sankey
+  // @docs: https://docs.datadoghq.com/dashboards/widgets/retention/
+  //
+  retention(title, start_event, return_event, options={}):: {
+    definition: {
+      type: 'retention',
+      title: title,
+      title_size: if std.objectHas(options, 'title_size') then options.title_size else '16',
+      title_align: if std.objectHas(options, 'title_align') then options.title_align else 'left',
+      requests: [
+        {
+          query: {
+            data_source: 'rum',
+            start_event: start_event,
+            return_event: return_event,
+          },
+          request_type: 'retention',
+        },
+      ],
+      retention_type: if std.objectHas(options, 'retention_type') then options.retention_type else 'n_day',
+      period: if std.objectHas(options, 'period') then options.period else 'daily',
+      [if std.objectHas(options, 'cohort_size') then 'cohort_size']: options.cohort_size,
+    },
+  },
+
+  // ========== RUN WORKFLOW WIDGET ==========
+  //
+  // @widget: run_workflow
+  // @purpose: Trigger automated workflows from dashboard
+  // @use_cases: Incident response, automated remediation, manual triggers
+  //
+  // @simple: widgets.runWorkflow('Restart Service', 'workflow_id_here')
+  //
+  // @options: Customize workflow widget
+  //   - inputs: [] - Array of workflow inputs { name: 'param', value: '$var' }
+  //   - title_size: '16' (default) | '18' | '20'
+  //   - title_align: 'left' (default) | 'center' | 'right'
+  //
+  // @example_moderate:
+  //   widgets.runWorkflow('Scale Cluster', 'abc123', {
+  //     inputs: [
+  //       { name: 'Environment', value: '$env.value' },
+  //       { name: 'Replicas', value: '$replicas.value' },
+  //     ],
+  //   })
+  //
+  // @related: monitor_summary, alert_value
+  // @docs: https://docs.datadoghq.com/dashboards/widgets/run_workflow/
+  //
+  runWorkflow(title, workflow_id, options={}):: {
+    definition: {
+      type: 'run_workflow',
+      title: title,
+      title_size: if std.objectHas(options, 'title_size') then options.title_size else '16',
+      title_align: if std.objectHas(options, 'title_align') then options.title_align else 'left',
+      workflow_id: workflow_id,
+      [if std.objectHas(options, 'inputs') then 'inputs']: options.inputs,
+    },
+  },
+
+  // ========== PROFILING FLAME GRAPH WIDGET ==========
+  //
+  // @widget: profiling_flame_graph
+  // @purpose: Visualize stack traces and performance profiling
+  // @use_cases: Performance analysis, hotspot identification, CPU/memory profiling
+  //
+  // @simple: widgets.profilingFlameGraph('CPU Profile', 'service:web-api')
+  //
+  // @options: Customize flame graph
+  //   - profile_type: 'cpu' (default) | 'memory' | 'wall' | 'goroutines'
+  //   - env: 'production' - Environment filter
+  //   - service: Service name filter
+  //   - version: Version filter
+  //   - operation_name: Operation to profile
+  //   - title_size: '16' (default) | '18' | '20'
+  //   - title_align: 'left' (default) | 'center' | 'right'
+  //
+  // @example_moderate:
+  //   widgets.profilingFlameGraph('Memory Hotspots', 'service:web-api env:prod', {
+  //     profile_type: 'memory',
+  //     env: 'production',
+  //     service: 'web-api',
+  //   })
+  //
+  // @note: Requires Continuous Profiler enabled
+  // @related: serviceSummary, distribution
+  // @docs: https://docs.datadoghq.com/dashboards/widgets/profiling_flame_graph/
+  //
+  profilingFlameGraph(title, query, options={}):: {
+    definition: {
+      type: 'profiling_flame_graph',
+      title: title,
+      title_size: if std.objectHas(options, 'title_size') then options.title_size else '16',
+      title_align: if std.objectHas(options, 'title_align') then options.title_align else 'left',
+      requests: [
+        {
+          profile_type: if std.objectHas(options, 'profile_type') then options.profile_type else 'cpu',
+          query: {
+            data_source: 'profiling',
+            query_string: query,
+            [if std.objectHas(options, 'env') then 'env']: options.env,
+            [if std.objectHas(options, 'service') then 'service']: options.service,
+            [if std.objectHas(options, 'version') then 'version']: options.version,
+            [if std.objectHas(options, 'operation_name') then 'operation_name']: options.operation_name,
+          },
+        },
+      ],
+    },
+  },
 }
