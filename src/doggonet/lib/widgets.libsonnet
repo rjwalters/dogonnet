@@ -469,7 +469,7 @@
       requests: [
         {
           formulas: if std.isArray(queries) then [
-            { formula: 'query%d' % (i + 1), alias: if std.objectHas(q, 'alias') then q.alias else null }
+            { formula: 'query%d' % (i + 1), alias: if std.isObject(q) && std.objectHas(q, 'alias') then q.alias else null }
             for i in std.range(0, std.length(queries) - 1)
             for q in [queries[i]]
           ] else [{ formula: 'query1' }],
@@ -477,8 +477,8 @@
             {
               data_source: 'metrics',
               name: 'query%d' % (i + 1),
-              query: q.query,
-              aggregator: if std.objectHas(q, 'aggregator') then q.aggregator else 'avg',
+              query: if std.isObject(q) then q.query else q,
+              aggregator: if std.isObject(q) && std.objectHas(q, 'aggregator') then q.aggregator else 'avg',
             }
             for i in std.range(0, std.length(queries) - 1)
             for q in [queries[i]]
@@ -1254,7 +1254,7 @@
   // @purpose: Display image from URL
   // @use_cases: Logos, diagrams, architecture illustrations
   //
-  // @simple: widgets.image('Architecture', 'https://example.com/diagram.png')
+  // @simple: widgets.image('https://example.com/diagram.png')
   //
   // @options: Customize image display
   //   - sizing: 'fit' (default) | 'fill' | 'center' | 'tile' | 'zoom'
@@ -1265,7 +1265,7 @@
   //   - horizontal_align: 'left' | 'center' (default) | 'right'
   //
   // @example_moderate:
-  //   widgets.image('System Diagram', 'https://example.com/arch.png', {
+  //   widgets.image('https://example.com/arch.png', {
   //     sizing: 'fit',
   //     has_border: false,
   //   })
@@ -1273,7 +1273,7 @@
   // @related: note, free_text
   // @docs: https://docs.datadoghq.com/dashboards/widgets/image/
   //
-  image(title, url, options={}):: {
+  image(url, options={}):: {
     definition: {
       type: 'image',
       url: url,
@@ -1292,17 +1292,17 @@
   // @purpose: Embed external content via iframe
   // @use_cases: External dashboards, documentation, web content
   //
-  // @simple: widgets.iframe('External Dashboard', 'https://example.com/dashboard')
+  // @simple: widgets.iframe('https://example.com/dashboard')
   //
   // @options: No additional options
   //
   // @example_moderate:
-  //   widgets.iframe('Grafana Dashboard', 'https://grafana.example.com/d/abc123')
+  //   widgets.iframe('https://grafana.example.com/d/abc123')
   //
   // @related: image, note
   // @docs: https://docs.datadoghq.com/dashboards/widgets/iframe/
   //
-  iframe(title, url, options={}):: {
+  iframe(url, options={}):: {
     definition: {
       type: 'iframe',
       url: url,
@@ -1332,6 +1332,7 @@
   // @docs: https://docs.datadoghq.com/dashboards/widgets/funnel/
   //
   funnel(title, queries, options={}):: {
+    local queryArray = if std.isArray(queries) then queries else [queries],
     definition: {
       type: 'funnel',
       title: title,
@@ -1345,7 +1346,7 @@
           },
           request_type: 'funnel',
         }
-        for q in queries
+        for q in queryArray
       ],
     },
   },

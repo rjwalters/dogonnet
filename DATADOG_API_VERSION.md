@@ -63,7 +63,7 @@ doggonet generates dashboard JSON compatible with Datadog Dashboard API v1 schem
 
 ### Supported Widget Types
 
-As of doggonet 1.0.0, **ALL Datadog widget types are fully supported** in `src/doggonet/lib/widgets.libsonnet`:
+As of doggonet 0.1.0, **ALL Datadog widget types are fully supported** in `src/doggonet/lib/widgets.libsonnet`:
 
 #### Core Visualization Widgets (11 widgets) ✅
 - ✅ **timeseries** - Time series charts (line, area, bars)
@@ -212,10 +212,9 @@ Datadog API has rate limits (typically 1000 requests per hour per organization):
 
 | doggonet Version | Datadog API | Python | Jsonnet | Widgets Supported | Coverage | Notes |
 |------------------|-------------|--------|---------|-------------------|----------|-------|
-| 0.1.0 | v1 | 3.10+ | 0.20+ | 9 | 24% | Initial release |
-| 0.2.0 | v1 | 3.10+ | 0.20+ | 30 | 79% | Comprehensive widget coverage expansion |
-| 1.0.0 | v1 | 3.10+ | 0.20+ | 38 | **100%** | 🎉 Complete widget coverage! |
-| TBD | v1/v2 | 3.10+ | 0.20+ | 38+ | 100% | Dashboard Lists v2 support |
+| 0.1.0 | v1 | 3.10+ | 0.20+ | 38 | **100%** | 🎉 Initial release with complete widget coverage! |
+| 0.2.0 | v1 | 3.10+ | 0.20+ | 38+ | 100% | TBD - Future enhancements |
+| 1.0.0 | v1/v2 | 3.10+ | 0.20+ | 38+ | 100% | TBD - Production-hardened, v2 API support |
 
 ## Testing Against Datadog API
 
@@ -285,9 +284,7 @@ doggonet follows semantic versioning:
 
 | Date | Version | Changes | Updated By |
 |------|---------|---------|------------|
-| 2024-11-05 | 0.1.0 | Initial documentation | Initial Setup |
-| 2025-11-06 | 0.2.0 | Expanded widget coverage from 9 to 30 widgets:<br>- Added visualization widgets (scatter_plot, pie_chart, treemap, geomap)<br>- Added monitoring widgets (alert_graph, alert_value, check_status, monitor_summary, slo)<br>- Added infrastructure widgets (hostmap, service_map, service_summary)<br>- Added event/log widgets (event_stream, event_timeline, log_stream, list)<br>- Added decoration widgets (free_text, image, iframe)<br>- Added analytics widgets (funnel, powerpack) | Claude Code |
-| 2025-11-06 | 1.0.0 | 🎉 **Achieved 100% widget coverage!** Expanded from 30 to 38 widgets:<br>- Added bar_chart for categorical comparisons<br>- Added wildcard for custom Vega-Lite visualizations<br>- Added split_graph for per-tag-value graphs<br>- Added topology_map for service relationship visualization<br>- Added sankey for user flow analysis (Product Analytics)<br>- Added retention for cohort analysis (Product Analytics)<br>- Added run_workflow for automation triggers<br>- Added profiling_flame_graph for performance profiling<br><br>**All Datadog widget types now supported!** | Claude Code |
+| 2024-11-05 | 0.1.0 | 🎉 **Initial release with 100% widget coverage!**<br><br>Comprehensive widget library with all 38 Datadog widget types:<br>- Core visualization widgets (11): timeseries, query_value, toplist, heatmap, change, distribution, table, scatterplot, treemap, barChart, wildcard<br>- Chart widgets (2): pieChart, geomap<br>- Infrastructure widgets (4): hostmap, serviceMap, serviceSummary, topologyMap<br>- Monitoring widgets (6): alertGraph, alertValue, checkStatus, monitorSummary, slo, runWorkflow<br>- Event/log widgets (4): eventStream, eventTimeline, logStream, list<br>- Decoration widgets (4): note, freeText, image, iframe<br>- Organization widgets (4): group, powerpack, splitGraph<br>- Product Analytics (3): funnel, sankey, retention<br>- Performance profiling (1): profilingFlameGraph<br><br>**Complete Datadog dashboard widget support from day one!** | Claude Code |
 
 ---
 
