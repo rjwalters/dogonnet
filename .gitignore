@@ -11,6 +11,7 @@ downloads/
 eggs/
 .eggs/
 lib/
+!src/doggonet/lib/
 lib64/
 parts/
 sdist/
