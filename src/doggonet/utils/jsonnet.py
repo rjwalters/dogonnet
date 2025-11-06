@@ -24,12 +24,26 @@ def compile_jsonnet(
     Raises:
         RuntimeError: If jsonnet compilation fails
     """
+    # Add doggonet library path to jpathdir
+    jpathdir = jpathdir or []
+
+    # Find the doggonet package directory
+    # Examples use 'import "doggonet/lib/main.libsonnet"'
+    # So we need to add the parent of the doggonet package directory
+    try:
+        import doggonet
+        package_dir = Path(doggonet.__file__).parent  # /path/to/doggonet
+        parent_dir = package_dir.parent  # /path/to/ (contains doggonet/)
+        if parent_dir.exists() and parent_dir not in jpathdir:
+            jpathdir = [parent_dir] + jpathdir
+    except (ImportError, AttributeError):
+        pass
+
     # Try to use _jsonnet library first (faster)
     try:
         import _jsonnet
 
         ext_vars = ext_vars or {}
-        jpathdir = jpathdir or []
 
         # Convert Path objects to strings for _jsonnet
         jpath_strs = [str(p) for p in jpathdir]

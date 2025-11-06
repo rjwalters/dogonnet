@@ -1,24 +1,47 @@
 [project]
 name = "doggonet"
 version = "0.1.0"
-description = "Datadog dashboard templating library using Jsonnet"
+description = "AI-friendly Datadog dashboard templating library using Jsonnet - create beautiful dashboards from natural language"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [
     { name = "Metta AI", email = "team@metta.ai" }
 ]
-keywords = ["datadog", "jsonnet", "dashboards", "monitoring", "observability"]
+keywords = [
+    "datadog",
+    "jsonnet",
+    "dashboards",
+    "monitoring",
+    "observability",
+    "sre",
+    "devops",
+    "infrastructure-as-code",
+    "iac",
+    "llm",
+    "ai",
+    "claude",
+    "chatgpt",
+    "golden-signals",
+    "metrics",
+    "visualization"
+]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Code Generators",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: System :: Monitoring",
+    "Topic :: System :: Systems Administration",
+    "Operating System :: OS Independent",
+    "Typing :: Typed",
 ]
 
 dependencies = [
@@ -56,7 +79,7 @@ include-package-data = true
 where = ["src"]
 
 [tool.setuptools.package-data]
-"*" = ["*.libsonnet"]
+"*" = ["*.libsonnet", "py.typed"]
 
 [tool.hatch.build.targets.sdist]
 include = [
