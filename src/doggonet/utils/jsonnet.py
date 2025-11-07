@@ -32,6 +32,7 @@ def compile_jsonnet(
     # So we need to add the parent of the doggonet package directory
     try:
         import doggonet
+
         package_dir = Path(doggonet.__file__).parent  # /path/to/doggonet
         parent_dir = package_dir.parent  # /path/to/ (contains doggonet/)
         if parent_dir.exists() and parent_dir not in jpathdir:
@@ -48,11 +49,7 @@ def compile_jsonnet(
         # Convert Path objects to strings for _jsonnet
         jpath_strs = [str(p) for p in jpathdir]
 
-        json_str = _jsonnet.evaluate_file(
-            str(source_file),
-            ext_vars=ext_vars,
-            jpathdir=jpath_strs
-        )
+        json_str = _jsonnet.evaluate_file(str(source_file), ext_vars=ext_vars, jpathdir=jpath_strs)
         return json.loads(json_str)
     except ImportError:
         pass

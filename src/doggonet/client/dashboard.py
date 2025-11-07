@@ -23,9 +23,7 @@ def get_datadog_credentials() -> tuple[str, str, str]:
     site = os.getenv("DD_SITE", "datadoghq.com")
 
     if not api_key or not app_key:
-        raise ValueError(
-            "Missing required credentials: DD_API_KEY and DD_APP_KEY must be set as environment variables"
-        )
+        raise ValueError("Missing required credentials: DD_API_KEY and DD_APP_KEY must be set as environment variables")
 
     return api_key, app_key, site
 

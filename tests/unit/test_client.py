@@ -1,6 +1,5 @@
 """Tests for Datadog client."""
 
-
 from unittest.mock import Mock, patch
 
 import pytest
@@ -39,11 +38,7 @@ def test_client_initialization(mock_datadog_credentials):
 
 def test_client_with_custom_credentials():
     """Test client with explicitly provided credentials."""
-    client = DatadogDashboardClient(
-        api_key="custom_api",
-        app_key="custom_app",
-        site="datadoghq.eu"
-    )
+    client = DatadogDashboardClient(api_key="custom_api", app_key="custom_app", site="datadoghq.eu")
 
     assert client.api_key == "custom_api"
     assert client.app_key == "custom_app"
@@ -55,10 +50,7 @@ def test_client_partial_credentials_uses_env_site(monkeypatch):
     """Test that site is pulled from env when only api/app keys are provided."""
     monkeypatch.setenv("DD_SITE", "datadoghq.eu")
 
-    client = DatadogDashboardClient(
-        api_key="custom_api",
-        app_key="custom_app"
-    )
+    client = DatadogDashboardClient(api_key="custom_api", app_key="custom_app")
 
     assert client.site == "datadoghq.eu"
     assert client.base_url == "https://api.datadoghq.eu/api"
@@ -66,37 +58,26 @@ def test_client_partial_credentials_uses_env_site(monkeypatch):
 
 def test_create_session():
     """Test session creation with proper headers."""
-    client = DatadogDashboardClient(
-        api_key="test_key",
-        app_key="test_app",
-        site="datadoghq.com"
-    )
+    client = DatadogDashboardClient(api_key="test_key", app_key="test_app", site="datadoghq.com")
 
     assert client._session.headers["DD-API-KEY"] == "test_key"
     assert client._session.headers["DD-APPLICATION-KEY"] == "test_app"
     assert client._session.headers["Content-Type"] == "application/json"
 
 
-@patch('doggonet.client.dashboard.requests.Session')
+@patch("doggonet.client.dashboard.requests.Session")
 def test_list_dashboards(mock_session_class):
     """Test listing dashboards."""
     # Setup mock
     mock_session = Mock()
     mock_response = Mock()
     mock_response.json.return_value = {
-        "dashboards": [
-            {"id": "dash-123", "title": "Test Dashboard 1"},
-            {"id": "dash-456", "title": "Test Dashboard 2"}
-        ]
+        "dashboards": [{"id": "dash-123", "title": "Test Dashboard 1"}, {"id": "dash-456", "title": "Test Dashboard 2"}]
     }
     mock_session.get.return_value = mock_response
     mock_session_class.return_value = mock_session
 
-    client = DatadogDashboardClient(
-        api_key="test_key",
-        app_key="test_app",
-        site="datadoghq.com"
-    )
+    client = DatadogDashboardClient(api_key="test_key", app_key="test_app", site="datadoghq.com")
 
     dashboards = client.list_dashboards()
 
@@ -106,25 +87,17 @@ def test_list_dashboards(mock_session_class):
     mock_session.get.assert_called_once_with("https://api.datadoghq.com/api/v1/dashboard")
 
 
-@patch('doggonet.client.dashboard.requests.Session')
+@patch("doggonet.client.dashboard.requests.Session")
 def test_get_dashboard(mock_session_class):
     """Test getting a specific dashboard."""
     # Setup mock
     mock_session = Mock()
     mock_response = Mock()
-    mock_response.json.return_value = {
-        "id": "dash-123",
-        "title": "Test Dashboard",
-        "widgets": []
-    }
+    mock_response.json.return_value = {"id": "dash-123", "title": "Test Dashboard", "widgets": []}
     mock_session.get.return_value = mock_response
     mock_session_class.return_value = mock_session
 
-    client = DatadogDashboardClient(
-        api_key="test_key",
-        app_key="test_app",
-        site="datadoghq.com"
-    )
+    client = DatadogDashboardClient(api_key="test_key", app_key="test_app", site="datadoghq.com")
 
     dashboard = client.get_dashboard("dash-123")
 
@@ -133,7 +106,7 @@ def test_get_dashboard(mock_session_class):
     mock_session.get.assert_called_once_with("https://api.datadoghq.com/api/v1/dashboard/dash-123")
 
 
-@patch('doggonet.client.dashboard.requests.Session')
+@patch("doggonet.client.dashboard.requests.Session")
 def test_dashboard_exists_true(mock_session_class):
     """Test checking if dashboard exists (returns True)."""
     # Setup mock
@@ -143,18 +116,14 @@ def test_dashboard_exists_true(mock_session_class):
     mock_session.get.return_value = mock_response
     mock_session_class.return_value = mock_session
 
-    client = DatadogDashboardClient(
-        api_key="test_key",
-        app_key="test_app",
-        site="datadoghq.com"
-    )
+    client = DatadogDashboardClient(api_key="test_key", app_key="test_app", site="datadoghq.com")
 
     exists = client.dashboard_exists("dash-123")
 
     assert exists is True
 
 
-@patch('doggonet.client.dashboard.requests.Session')
+@patch("doggonet.client.dashboard.requests.Session")
 def test_dashboard_exists_false(mock_session_class):
     """Test checking if dashboard exists (returns False)."""
     # Setup mock
@@ -164,18 +133,14 @@ def test_dashboard_exists_false(mock_session_class):
     mock_session.get.return_value = mock_response
     mock_session_class.return_value = mock_session
 
-    client = DatadogDashboardClient(
-        api_key="test_key",
-        app_key="test_app",
-        site="datadoghq.com"
-    )
+    client = DatadogDashboardClient(api_key="test_key", app_key="test_app", site="datadoghq.com")
 
     exists = client.dashboard_exists("dash-999")
 
     assert exists is False
 
 
-@patch('doggonet.client.dashboard.requests.Session')
+@patch("doggonet.client.dashboard.requests.Session")
 def test_dashboard_exists_handles_exception(mock_session_class):
     """Test dashboard_exists handles exceptions gracefully."""
     # Setup mock to raise exception
@@ -183,41 +148,30 @@ def test_dashboard_exists_handles_exception(mock_session_class):
     mock_session.get.side_effect = requests.exceptions.RequestException("Connection error")
     mock_session_class.return_value = mock_session
 
-    client = DatadogDashboardClient(
-        api_key="test_key",
-        app_key="test_app",
-        site="datadoghq.com"
-    )
+    client = DatadogDashboardClient(api_key="test_key", app_key="test_app", site="datadoghq.com")
 
     exists = client.dashboard_exists("dash-123")
 
     assert exists is False
 
 
-@patch('doggonet.client.dashboard.requests.Session')
+@patch("doggonet.client.dashboard.requests.Session")
 def test_create_dashboard(mock_session_class):
     """Test creating a dashboard."""
     # Setup mock
     mock_session = Mock()
     mock_response = Mock()
-    mock_response.json.return_value = {
-        "id": "dash-new",
-        "title": "New Dashboard"
-    }
+    mock_response.json.return_value = {"id": "dash-new", "title": "New Dashboard"}
     mock_session.post.return_value = mock_response
     mock_session_class.return_value = mock_session
 
-    client = DatadogDashboardClient(
-        api_key="test_key",
-        app_key="test_app",
-        site="datadoghq.com"
-    )
+    client = DatadogDashboardClient(api_key="test_key", app_key="test_app", site="datadoghq.com")
 
     dashboard_json = {
         "title": "New Dashboard",
         "widgets": [],
         "id": "should-be-removed",  # Should be stripped
-        "created_at": "timestamp"  # Should be stripped
+        "created_at": "timestamp",  # Should be stripped
     }
 
     result = client.create_dashboard(dashboard_json)
@@ -231,30 +185,23 @@ def test_create_dashboard(mock_session_class):
     assert posted_json["title"] == "New Dashboard"
 
 
-@patch('doggonet.client.dashboard.requests.Session')
+@patch("doggonet.client.dashboard.requests.Session")
 def test_update_dashboard(mock_session_class):
     """Test updating a dashboard."""
     # Setup mock
     mock_session = Mock()
     mock_response = Mock()
-    mock_response.json.return_value = {
-        "id": "dash-123",
-        "title": "Updated Dashboard"
-    }
+    mock_response.json.return_value = {"id": "dash-123", "title": "Updated Dashboard"}
     mock_session.put.return_value = mock_response
     mock_session_class.return_value = mock_session
 
-    client = DatadogDashboardClient(
-        api_key="test_key",
-        app_key="test_app",
-        site="datadoghq.com"
-    )
+    client = DatadogDashboardClient(api_key="test_key", app_key="test_app", site="datadoghq.com")
 
     dashboard_json = {
         "title": "Updated Dashboard",
         "widgets": [],
         "modified_at": "timestamp",  # Should be stripped
-        "author_handle": "user@example.com"  # Should be stripped
+        "author_handle": "user@example.com",  # Should be stripped
     }
 
     result = client.update_dashboard("dash-123", dashboard_json)
@@ -267,7 +214,7 @@ def test_update_dashboard(mock_session_class):
     assert "author_handle" not in posted_json
 
 
-@patch('doggonet.client.dashboard.requests.Session')
+@patch("doggonet.client.dashboard.requests.Session")
 def test_delete_dashboard(mock_session_class):
     """Test deleting a dashboard."""
     # Setup mock
@@ -277,11 +224,7 @@ def test_delete_dashboard(mock_session_class):
     mock_session.delete.return_value = mock_response
     mock_session_class.return_value = mock_session
 
-    client = DatadogDashboardClient(
-        api_key="test_key",
-        app_key="test_app",
-        site="datadoghq.com"
-    )
+    client = DatadogDashboardClient(api_key="test_key", app_key="test_app", site="datadoghq.com")
 
     result = client.delete_dashboard("dash-123")
 
@@ -289,23 +232,17 @@ def test_delete_dashboard(mock_session_class):
     mock_session.delete.assert_called_once_with("https://api.datadoghq.com/api/v1/dashboard/dash-123")
 
 
-@patch('doggonet.client.dashboard.requests.Session')
+@patch("doggonet.client.dashboard.requests.Session")
 def test_list_metrics(mock_session_class):
     """Test listing metrics."""
     # Setup mock
     mock_session = Mock()
     mock_response = Mock()
-    mock_response.json.return_value = {
-        "metrics": ["system.cpu.user", "system.mem.used", "app.requests"]
-    }
+    mock_response.json.return_value = {"metrics": ["system.cpu.user", "system.mem.used", "app.requests"]}
     mock_session.get.return_value = mock_response
     mock_session_class.return_value = mock_session
 
-    client = DatadogDashboardClient(
-        api_key="test_key",
-        app_key="test_app",
-        site="datadoghq.com"
-    )
+    client = DatadogDashboardClient(api_key="test_key", app_key="test_app", site="datadoghq.com")
 
     metrics = client.list_metrics()
 
@@ -315,23 +252,17 @@ def test_list_metrics(mock_session_class):
     assert metrics == sorted(metrics)
 
 
-@patch('doggonet.client.dashboard.requests.Session')
+@patch("doggonet.client.dashboard.requests.Session")
 def test_list_metrics_with_search(mock_session_class):
     """Test listing metrics with search filter."""
     # Setup mock
     mock_session = Mock()
     mock_response = Mock()
-    mock_response.json.return_value = {
-        "metrics": ["system.cpu.user", "system.mem.used", "app.requests"]
-    }
+    mock_response.json.return_value = {"metrics": ["system.cpu.user", "system.mem.used", "app.requests"]}
     mock_session.get.return_value = mock_response
     mock_session_class.return_value = mock_session
 
-    client = DatadogDashboardClient(
-        api_key="test_key",
-        app_key="test_app",
-        site="datadoghq.com"
-    )
+    client = DatadogDashboardClient(api_key="test_key", app_key="test_app", site="datadoghq.com")
 
     metrics = client.list_metrics(search="system")
 
@@ -341,25 +272,17 @@ def test_list_metrics_with_search(mock_session_class):
     assert "app.requests" not in metrics
 
 
-@patch('doggonet.client.dashboard.requests.Session')
+@patch("doggonet.client.dashboard.requests.Session")
 def test_get_metric_metadata(mock_session_class):
     """Test getting metric metadata."""
     # Setup mock
     mock_session = Mock()
     mock_response = Mock()
-    mock_response.json.return_value = {
-        "metric": "system.cpu.user",
-        "type": "gauge",
-        "description": "CPU usage"
-    }
+    mock_response.json.return_value = {"metric": "system.cpu.user", "type": "gauge", "description": "CPU usage"}
     mock_session.get.return_value = mock_response
     mock_session_class.return_value = mock_session
 
-    client = DatadogDashboardClient(
-        api_key="test_key",
-        app_key="test_app",
-        site="datadoghq.com"
-    )
+    client = DatadogDashboardClient(api_key="test_key", app_key="test_app", site="datadoghq.com")
 
     metadata = client.get_metric_metadata("system.cpu.user")
 
@@ -368,26 +291,17 @@ def test_get_metric_metadata(mock_session_class):
     mock_session.get.assert_called_once_with("https://api.datadoghq.com/api/v1/metrics/system.cpu.user")
 
 
-@patch('doggonet.client.dashboard.requests.Session')
+@patch("doggonet.client.dashboard.requests.Session")
 def test_list_tags(mock_session_class):
     """Test listing tags."""
     # Setup mock
     mock_session = Mock()
     mock_response = Mock()
-    mock_response.json.return_value = {
-        "tags": {
-            "env": ["prod", "staging"],
-            "service": ["web", "api"]
-        }
-    }
+    mock_response.json.return_value = {"tags": {"env": ["prod", "staging"], "service": ["web", "api"]}}
     mock_session.get.return_value = mock_response
     mock_session_class.return_value = mock_session
 
-    client = DatadogDashboardClient(
-        api_key="test_key",
-        app_key="test_app",
-        site="datadoghq.com"
-    )
+    client = DatadogDashboardClient(api_key="test_key", app_key="test_app", site="datadoghq.com")
 
     tags = client.list_tags()
 
