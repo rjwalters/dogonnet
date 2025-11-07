@@ -108,10 +108,11 @@ def test_compile_with_cli_fallback(tmp_path, monkeypatch):
     monkeypatch.setattr('doggonet.utils.jsonnet.subprocess.run', mock_run)
 
     # Also make sure _jsonnet import fails
+    original_import = __import__
     def mock_import(name, *args, **kwargs):
         if name == '_jsonnet':
             raise ImportError("No module named '_jsonnet'")
-        return __import__(name, *args, **kwargs)
+        return original_import(name, *args, **kwargs)
 
     monkeypatch.setattr('builtins.__import__', mock_import)
 
@@ -146,10 +147,11 @@ def test_compile_cli_with_ext_vars(tmp_path, monkeypatch):
     mock_run.return_value = mock_result
     monkeypatch.setattr('doggonet.utils.jsonnet.subprocess.run', mock_run)
 
+    original_import = __import__
     def mock_import(name, *args, **kwargs):
         if name == '_jsonnet':
             raise ImportError("No module named '_jsonnet'")
-        return __import__(name, *args, **kwargs)
+        return original_import(name, *args, **kwargs)
 
     monkeypatch.setattr('builtins.__import__', mock_import)
 
@@ -184,10 +186,11 @@ def test_compile_cli_with_jpathdir(tmp_path, monkeypatch):
     mock_run.return_value = mock_result
     monkeypatch.setattr('doggonet.utils.jsonnet.subprocess.run', mock_run)
 
+    original_import = __import__
     def mock_import(name, *args, **kwargs):
         if name == '_jsonnet':
             raise ImportError("No module named '_jsonnet'")
-        return __import__(name, *args, **kwargs)
+        return original_import(name, *args, **kwargs)
 
     monkeypatch.setattr('builtins.__import__', mock_import)
 
@@ -218,10 +221,11 @@ def test_compile_cli_not_found(tmp_path, monkeypatch):
     mock_run.side_effect = FileNotFoundError("jsonnet not found")
     monkeypatch.setattr('doggonet.utils.jsonnet.subprocess.run', mock_run)
 
+    original_import = __import__
     def mock_import(name, *args, **kwargs):
         if name == '_jsonnet':
             raise ImportError("No module named '_jsonnet'")
-        return __import__(name, *args, **kwargs)
+        return original_import(name, *args, **kwargs)
 
     monkeypatch.setattr('builtins.__import__', mock_import)
 
@@ -249,10 +253,11 @@ def test_compile_cli_compilation_error(tmp_path, monkeypatch):
     mock_run.side_effect = error
     monkeypatch.setattr('doggonet.utils.jsonnet.subprocess.run', mock_run)
 
+    original_import = __import__
     def mock_import(name, *args, **kwargs):
         if name == '_jsonnet':
             raise ImportError("No module named '_jsonnet'")
-        return __import__(name, *args, **kwargs)
+        return original_import(name, *args, **kwargs)
 
     monkeypatch.setattr('builtins.__import__', mock_import)
 
@@ -281,10 +286,11 @@ def test_compile_cli_invalid_json_output(tmp_path, monkeypatch):
     mock_run.return_value = mock_result
     monkeypatch.setattr('doggonet.utils.jsonnet.subprocess.run', mock_run)
 
+    original_import = __import__
     def mock_import(name, *args, **kwargs):
         if name == '_jsonnet':
             raise ImportError("No module named '_jsonnet'")
-        return __import__(name, *args, **kwargs)
+        return original_import(name, *args, **kwargs)
 
     monkeypatch.setattr('builtins.__import__', mock_import)
 
