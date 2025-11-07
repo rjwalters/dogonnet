@@ -1,6 +1,6 @@
 [project]
 name = "dogonnet"
-version = "0.1.0"
+version = "0.1.1"
 description = "AI-friendly Datadog dashboard templating library using Jsonnet - create beautiful dashboards from natural language"
 readme = "README.md"
 requires-python = ">=3.10"
