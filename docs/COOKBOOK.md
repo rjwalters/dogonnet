@@ -1,4 +1,4 @@
-# doggonet Cookbook
+# dogonnet Cookbook
 
 **Copy-paste recipes for common dashboard patterns.**
 
@@ -15,8 +15,8 @@
 
 ### Request Rate (Counter → Rate)
 ```jsonnet
-local doggonet = import 'doggonet/lib/main.libsonnet';
-local widgets = doggonet.widgets;
+local dogonnet = import 'dogonnet/lib/main.libsonnet';
+local widgets = dogonnet.widgets;
 
 widgets.timeseries(
   'Requests per Second',
@@ -261,9 +261,9 @@ widgets.timeseries(
 **3 rows, 7 widgets - perfect for microservices**
 
 ```jsonnet
-local doggonet = import 'doggonet/lib/main.libsonnet';
-local layouts = doggonet.layouts;
-local widgets = doggonet.widgets;
+local dogonnet = import 'dogonnet/lib/main.libsonnet';
+local layouts = dogonnet.layouts;
+local widgets = dogonnet.widgets;
 
 // Variables (replace these)
 local service = 'web-api';
@@ -343,9 +343,9 @@ layouts.grid(
 **Comprehensive SRE dashboard**
 
 ```jsonnet
-local doggonet = import 'doggonet/lib/main.libsonnet';
-local layouts = doggonet.layouts;
-local widgets = doggonet.widgets;
+local dogonnet = import 'dogonnet/lib/main.libsonnet';
+local layouts = dogonnet.layouts;
+local widgets = dogonnet.widgets;
 
 local service = 'payment-api';
 
@@ -435,9 +435,9 @@ layouts.grid(
 **Revenue, conversions, user activity**
 
 ```jsonnet
-local doggonet = import 'doggonet/lib/main.libsonnet';
-local layouts = doggonet.layouts;
-local widgets = doggonet.widgets;
+local dogonnet = import 'dogonnet/lib/main.libsonnet';
+local layouts = dogonnet.layouts;
+local widgets = dogonnet.widgets;
 
 layouts.grid(
   'Business KPIs',

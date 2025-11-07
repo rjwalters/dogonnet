@@ -2,9 +2,9 @@
 
 ## Overview
 
-This PR completes doggonet's widget library with **full coverage of all Datadog dashboard widget types** - all 38 widgets implemented for the v0.1.0 release.
+This PR completes dogonnet's widget library with **full coverage of all Datadog dashboard widget types** - all 38 widgets implemented for the v0.1.0 release.
 
-doggonet launches as the most comprehensive Jsonnet library for programmatic Datadog dashboard creation, supporting every widget type across metrics, APM, logs, RUM, Product Analytics, profiling, and workflow automation.
+dogonnet launches as the most comprehensive Jsonnet library for programmatic Datadog dashboard creation, supporting every widget type across metrics, APM, logs, RUM, Product Analytics, profiling, and workflow automation.
 
 ## 📊 Complete Widget Coverage
 
@@ -102,26 +102,26 @@ All 38 widgets include:
 ## 📝 Example Usage
 
 ```jsonnet
-local doggonet = import 'doggonet/lib/main.libsonnet';
+local dogonnet = import 'dogonnet/lib/main.libsonnet';
 
 // Simple usage
-doggonet.widgets.barChart('Requests by Service', 'sum:requests{*} by {service}')
+dogonnet.widgets.barChart('Requests by Service', 'sum:requests{*} by {service}')
 
 // With options
-doggonet.widgets.sankey('User Journey', 'source:rum @view.name:*', {
+dogonnet.widgets.sankey('User Journey', 'source:rum @view.name:*', {
   show_n_views: 10,
   sort_by: 'session_count',
 })
 
 // Advanced usage
-doggonet.widgets.splitGraph('CPU per Host', 'avg:system.cpu{*} by {host}', 'host', {
+dogonnet.widgets.splitGraph('CPU per Host', 'avg:system.cpu{*} by {host}', 'host', {
   size: 'sm',
   limit: 20,
   sort: { order: 'desc', by: 'value' },
 })
 
 // Custom visualizations
-doggonet.widgets.wildcard('Custom Chart', {
+dogonnet.widgets.wildcard('Custom Chart', {
   mark: 'bar',
   encoding: {
     x: { field: 'service', type: 'nominal' },
@@ -134,7 +134,7 @@ doggonet.widgets.wildcard('Custom Chart', {
 
 ### Modified Files
 
-1. **`src/doggonet/lib/widgets.libsonnet`**
+1. **`src/dogonnet/lib/widgets.libsonnet`**
    - Added 29 new widget functions
    - ~1,300 lines of new implementations
    - Comprehensive inline documentation
@@ -146,7 +146,7 @@ doggonet.widgets.wildcard('Custom Chart', {
    - Detailed changelog entries
 
 3. **`.gitignore`**
-   - Fixed to allow tracking `src/doggonet/lib/` directory
+   - Fixed to allow tracking `src/dogonnet/lib/` directory
 
 ### Coverage by Category
 
@@ -246,4 +246,4 @@ Inspired by [grafonnet-lib](https://github.com/grafana/grafonnet-lib) for Grafan
 
 ---
 
-**This PR represents a significant milestone for doggonet, transforming it from a basic library into the most comprehensive Jsonnet-based solution for Datadog dashboard automation.** 🚀
+**This PR represents a significant milestone for dogonnet, transforming it from a basic library into the most comprehensive Jsonnet-based solution for Datadog dashboard automation.** 🚀

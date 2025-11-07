@@ -1,4 +1,4 @@
-# Publishing Checklist for doggonet
+# Publishing Checklist for dogonnet
 
 ## Pre-Publication Checklist
 

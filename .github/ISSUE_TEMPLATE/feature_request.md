@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for doggonet
+about: Suggest an idea for dogonnet
 title: ''
 labels: enhancement
 assignees: ''

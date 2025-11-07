@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to doggonet will be documented in this file.
+All notable changes to dogonnet will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -41,25 +41,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Analytics: funnel, sankey, retention
   - Profiling: profilingFlameGraph
 
-- **Jsonnet Library** (`src/doggonet/lib/`)
+- **Jsonnet Library** (`src/dogonnet/lib/`)
   - widgets.libsonnet - All 38 widget types
   - layouts.libsonnet - Grid and ordered layouts with helpers
   - presets.libsonnet - Pre-configured common patterns
   - main.libsonnet - Unified import
 
-- **Python Client** (`src/doggonet/client/`)
+- **Python Client** (`src/dogonnet/client/`)
   - DatadogDashboardClient - Full CRUD operations
   - Authentication with DD_API_KEY, DD_APP_KEY, DD_SITE
   - Dashboard list, create, update, delete, exists
   - Metrics and tags operations
 
-- **CLI Tools** (`src/doggonet/cli/`)
-  - `doggonet push` - Upload dashboard to Datadog
-  - `doggonet fetch` - Download dashboard from Datadog
-  - `doggonet list` - List all dashboards
-  - `doggonet delete` - Delete dashboard
-  - `doggonet compile` - Compile Jsonnet to JSON
-  - `doggonet view` - Pretty-print dashboard JSON
+- **CLI Tools** (`src/dogonnet/cli/`)
+  - `dogonnet push` - Upload dashboard to Datadog
+  - `dogonnet fetch` - Download dashboard from Datadog
+  - `dogonnet list` - List all dashboards
+  - `dogonnet delete` - Delete dashboard
+  - `dogonnet compile` - Compile Jsonnet to JSON
+  - `dogonnet view` - Pretty-print dashboard JSON
 
 - **Documentation**
   - README.md - Quick start and overview
@@ -116,7 +116,7 @@ We follow [Semantic Versioning](https://semver.org/):
 
 ## Links
 
-- [PyPI](https://pypi.org/project/doggonet/)
+- [PyPI](https://pypi.org/project/dogonnet/)
 - [GitHub](https://github.com/rjwalters/dogonnet)
 - [Documentation](https://github.com/rjwalters/dogonnet#readme)
 - [Issue Tracker](https://github.com/rjwalters/dogonnet/issues)

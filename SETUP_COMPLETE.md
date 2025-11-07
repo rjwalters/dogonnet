@@ -1,13 +1,13 @@
-# doggonet Setup Complete ✓
+# dogonnet Setup Complete ✓
 
-This document summarizes the successful extraction and setup of the doggonet library.
+This document summarizes the successful extraction and setup of the dogonnet library.
 
 ## Success Criteria - All Met ✓
 
 ### ✅ Package installs with `pip install -e .`
 Verified: Package installs successfully in a virtual environment.
 
-### ✅ `doggonet --help` shows CLI commands
+### ✅ `dogonnet --help` shows CLI commands
 Verified: All 6 commands available:
 - `push` - Push dashboard to Datadog
 - `fetch` - Fetch dashboard from Datadog
@@ -54,8 +54,8 @@ Complete with:
 ## Package Structure
 
 ```
-doggonet/
-├── src/doggonet/
+dogonnet/
+├── src/dogonnet/
 │   ├── __init__.py           # Package entry point
 │   ├── cli/
 │   │   ├── __init__.py
@@ -99,7 +99,7 @@ Dev:
    ```bash
    export DD_API_KEY="your-key"
    export DD_APP_KEY="your-app-key"
-   doggonet push examples/basic.jsonnet
+   dogonnet push examples/basic.jsonnet
    ```
 
 2. **Publish to PyPI:**
@@ -118,19 +118,19 @@ Dev:
 
 ```bash
 # Install
-pip install doggonet
+pip install dogonnet
 
 # Create a dashboard
 cat > my_dashboard.jsonnet <<'JSONNET'
-local doggonet = import 'doggonet/lib/main.libsonnet';
-doggonet.layouts.grid(
+local dogonnet = import 'dogonnet/lib/main.libsonnet';
+dogonnet.layouts.grid(
   'My Dashboard',
-  [doggonet.widgets.timeseries('CPU', 'avg:system.cpu{*}')]
+  [dogonnet.widgets.timeseries('CPU', 'avg:system.cpu{*}')]
 )
 JSONNET
 
 # Push to Datadog
-doggonet push my_dashboard.jsonnet
+dogonnet push my_dashboard.jsonnet
 ```
 
 ## Notes

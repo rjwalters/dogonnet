@@ -1,17 +1,17 @@
 # Datadog API Version Compatibility
 
-This document tracks the Datadog API version that doggonet is built against and tested with.
+This document tracks the Datadog API version that dogonnet is built against and tested with.
 
 ## Current API Version
 
 **Target API Version:** Datadog Dashboard API v1
 **Documentation Reference:** https://docs.datadoghq.com/api/latest/dashboards/
 **Documentation Snapshot Date:** 2024-11-05 (to be verified and updated)
-**Library Version:** doggonet 0.1.0
+**Library Version:** dogonnet 0.1.0
 
 ## API Endpoints Used
 
-doggonet uses the following Datadog API v1 endpoints:
+dogonnet uses the following Datadog API v1 endpoints:
 
 ### Dashboard Operations
 - `POST /api/v1/dashboard` - Create a new dashboard
@@ -29,7 +29,7 @@ doggonet uses the following Datadog API v1 endpoints:
 
 ## Authentication
 
-doggonet requires the following Datadog credentials:
+dogonnet requires the following Datadog credentials:
 - **DD_API_KEY**: API key with `dashboards_write` permission
 - **DD_APP_KEY**: Application key
 - **DD_SITE**: Datadog site (default: `datadoghq.com`)
@@ -46,7 +46,7 @@ For OAuth apps:
 
 ### Supported Dashboard Properties
 
-doggonet generates dashboard JSON compatible with Datadog Dashboard API v1 schema:
+dogonnet generates dashboard JSON compatible with Datadog Dashboard API v1 schema:
 
 ```json
 {
@@ -63,101 +63,101 @@ doggonet generates dashboard JSON compatible with Datadog Dashboard API v1 schem
 
 ### Supported Widget Types
 
-As of doggonet 0.1.0, **ALL Datadog widget types are fully supported** in `src/doggonet/lib/widgets.libsonnet`:
+As of dogonnet 0.1.0, **ALL Datadog widget types are fully supported** in `src/dogonnet/lib/widgets.libsonnet`:
 
 #### Core Visualization Widgets (11 widgets) ✅
 - ✅ **timeseries** - Time series charts (line, area, bars)
-  - `src/doggonet/lib/widgets.libsonnet:timeseries()`
+  - `src/dogonnet/lib/widgets.libsonnet:timeseries()`
 - ✅ **query_value** - Single value metrics (gauges/counters)
-  - `src/doggonet/lib/widgets.libsonnet:queryValue()`
+  - `src/dogonnet/lib/widgets.libsonnet:queryValue()`
 - ✅ **toplist** - Ranked list of metric values (top N)
-  - `src/doggonet/lib/widgets.libsonnet:toplist()`
+  - `src/dogonnet/lib/widgets.libsonnet:toplist()`
 - ✅ **heatmap** - Heatmap visualization
-  - `src/doggonet/lib/widgets.libsonnet:heatmap()`
+  - `src/dogonnet/lib/widgets.libsonnet:heatmap()`
 - ✅ **change** - Change/comparison graphs
-  - `src/doggonet/lib/widgets.libsonnet:change()`
+  - `src/dogonnet/lib/widgets.libsonnet:change()`
 - ✅ **distribution** - Distribution graphs (APM/tracing)
-  - `src/doggonet/lib/widgets.libsonnet:distribution()`
+  - `src/dogonnet/lib/widgets.libsonnet:distribution()`
 - ✅ **table** - Table widget with multiple columns
-  - `src/doggonet/lib/widgets.libsonnet:table()`
+  - `src/dogonnet/lib/widgets.libsonnet:table()`
 - ✅ **scatterplot** - Scatter plot for metric correlation
-  - `src/doggonet/lib/widgets.libsonnet:scatterplot()`
+  - `src/dogonnet/lib/widgets.libsonnet:scatterplot()`
 - ✅ **treemap** - Hierarchical data visualization
-  - `src/doggonet/lib/widgets.libsonnet:treemap()`
+  - `src/dogonnet/lib/widgets.libsonnet:treemap()`
 - ✅ **barChart** - Bar chart for categorical comparisons (NEW)
-  - `src/doggonet/lib/widgets.libsonnet:barChart()`
+  - `src/dogonnet/lib/widgets.libsonnet:barChart()`
 - ✅ **wildcard** - Custom Vega-Lite visualizations (NEW)
-  - `src/doggonet/lib/widgets.libsonnet:wildcard()`
+  - `src/dogonnet/lib/widgets.libsonnet:wildcard()`
 
 #### Chart Widgets (2 widgets) ✅
 - ✅ **pieChart** - Pie chart (sunburst type)
-  - `src/doggonet/lib/widgets.libsonnet:pieChart()`
+  - `src/dogonnet/lib/widgets.libsonnet:pieChart()`
 - ✅ **geomap** - Geographic map visualization
-  - `src/doggonet/lib/widgets.libsonnet:geomap()`
+  - `src/dogonnet/lib/widgets.libsonnet:geomap()`
 
 #### Infrastructure & Service Widgets (4 widgets) ✅
 - ✅ **hostmap** - Infrastructure host map (hexagonal)
-  - `src/doggonet/lib/widgets.libsonnet:hostmap()`
+  - `src/dogonnet/lib/widgets.libsonnet:hostmap()`
 - ✅ **serviceMap** - Service dependency map
-  - `src/doggonet/lib/widgets.libsonnet:serviceMap()`
+  - `src/dogonnet/lib/widgets.libsonnet:serviceMap()`
 - ✅ **serviceSummary** - APM service summary (trace_service)
-  - `src/doggonet/lib/widgets.libsonnet:serviceSummary()`
+  - `src/dogonnet/lib/widgets.libsonnet:serviceSummary()`
 - ✅ **topologyMap** - Topology map visualization (NEW)
-  - `src/doggonet/lib/widgets.libsonnet:topologyMap()`
+  - `src/dogonnet/lib/widgets.libsonnet:topologyMap()`
 
 #### Monitoring & Alerting Widgets (6 widgets) ✅
 - ✅ **alertGraph** - Alert graph with thresholds
-  - `src/doggonet/lib/widgets.libsonnet:alertGraph()`
+  - `src/dogonnet/lib/widgets.libsonnet:alertGraph()`
 - ✅ **alertValue** - Alert value display
-  - `src/doggonet/lib/widgets.libsonnet:alertValue()`
+  - `src/dogonnet/lib/widgets.libsonnet:alertValue()`
 - ✅ **checkStatus** - Service check status
-  - `src/doggonet/lib/widgets.libsonnet:checkStatus()`
+  - `src/dogonnet/lib/widgets.libsonnet:checkStatus()`
 - ✅ **monitorSummary** - Monitor summary widget
-  - `src/doggonet/lib/widgets.libsonnet:monitorSummary()`
+  - `src/dogonnet/lib/widgets.libsonnet:monitorSummary()`
 - ✅ **slo** - SLO widget
-  - `src/doggonet/lib/widgets.libsonnet:slo()`
+  - `src/dogonnet/lib/widgets.libsonnet:slo()`
 - ✅ **runWorkflow** - Workflow automation trigger (NEW)
-  - `src/doggonet/lib/widgets.libsonnet:runWorkflow()`
+  - `src/dogonnet/lib/widgets.libsonnet:runWorkflow()`
 
 #### Event & Log Widgets (4 widgets) ✅
 - ✅ **eventStream** - Event stream widget
-  - `src/doggonet/lib/widgets.libsonnet:eventStream()`
+  - `src/dogonnet/lib/widgets.libsonnet:eventStream()`
 - ✅ **eventTimeline** - Event timeline visualization
-  - `src/doggonet/lib/widgets.libsonnet:eventTimeline()`
+  - `src/dogonnet/lib/widgets.libsonnet:eventTimeline()`
 - ✅ **logStream** - Log stream widget
-  - `src/doggonet/lib/widgets.libsonnet:logStream()`
+  - `src/dogonnet/lib/widgets.libsonnet:logStream()`
 - ✅ **list** - List widget for events/issues/logs
-  - `src/doggonet/lib/widgets.libsonnet:list()`
+  - `src/dogonnet/lib/widgets.libsonnet:list()`
 
 #### Decoration & Content Widgets (4 widgets) ✅
 - ✅ **note** - Text/markdown widgets for documentation
-  - `src/doggonet/lib/widgets.libsonnet:note()`
+  - `src/dogonnet/lib/widgets.libsonnet:note()`
 - ✅ **freeText** - Free-form text widget
-  - `src/doggonet/lib/widgets.libsonnet:freeText()`
+  - `src/dogonnet/lib/widgets.libsonnet:freeText()`
 - ✅ **image** - Image widget
-  - `src/doggonet/lib/widgets.libsonnet:image()`
+  - `src/dogonnet/lib/widgets.libsonnet:image()`
 - ✅ **iframe** - Embedded iframe widget
-  - `src/doggonet/lib/widgets.libsonnet:iframe()`
+  - `src/dogonnet/lib/widgets.libsonnet:iframe()`
 
 #### Organization & Layout Widgets (4 widgets) ✅
 - ✅ **group** - Widget groups for organization
-  - `src/doggonet/lib/widgets.libsonnet:group()`
+  - `src/dogonnet/lib/widgets.libsonnet:group()`
 - ✅ **powerpack** - Reusable widget templates
-  - `src/doggonet/lib/widgets.libsonnet:powerpack()`
+  - `src/dogonnet/lib/widgets.libsonnet:powerpack()`
 - ✅ **splitGraph** - Repeating graphs per tag value (NEW)
-  - `src/doggonet/lib/widgets.libsonnet:splitGraph()`
+  - `src/dogonnet/lib/widgets.libsonnet:splitGraph()`
 
 #### Product Analytics Widgets (3 widgets) ✅
 - ✅ **funnel** - Funnel analytics (RUM)
-  - `src/doggonet/lib/widgets.libsonnet:funnel()`
+  - `src/dogonnet/lib/widgets.libsonnet:funnel()`
 - ✅ **sankey** - Sankey diagram for user flow (NEW)
-  - `src/doggonet/lib/widgets.libsonnet:sankey()`
+  - `src/dogonnet/lib/widgets.libsonnet:sankey()`
 - ✅ **retention** - User retention analysis (NEW)
-  - `src/doggonet/lib/widgets.libsonnet:retention()`
+  - `src/dogonnet/lib/widgets.libsonnet:retention()`
 
 #### Performance Profiling Widgets (1 widget) ✅
 - ✅ **profilingFlameGraph** - Stack trace visualization (NEW)
-  - `src/doggonet/lib/widgets.libsonnet:profilingFlameGraph()`
+  - `src/dogonnet/lib/widgets.libsonnet:profilingFlameGraph()`
 
 ---
 
@@ -193,12 +193,12 @@ See [PRODUCTION_CHECKLIST.md](PRODUCTION_CHECKLIST.md) for widget coverage audit
 
 ### Dashboard Lists API
 The Dashboard Lists API v1 (`/api/v1/dashboard/lists`) is being deprecated in favor of v2.
-- **Current status:** Not implemented in doggonet
+- **Current status:** Not implemented in dogonnet
 - **Future plan:** Will implement v2 endpoint when adding dashboard list support
 
 ### Rate Limiting
 Datadog API has rate limits (typically 1000 requests per hour per organization):
-- doggonet implements exponential backoff retry logic
+- dogonnet implements exponential backoff retry logic
 - Default: 3 retries with 1-second initial delay
 
 ### API Changes to Monitor
@@ -210,7 +210,7 @@ Datadog API has rate limits (typically 1000 requests per hour per organization):
 
 ## Version Compatibility Matrix
 
-| doggonet Version | Datadog API | Python | Jsonnet | Widgets Supported | Coverage | Notes |
+| dogonnet Version | Datadog API | Python | Jsonnet | Widgets Supported | Coverage | Notes |
 |------------------|-------------|--------|---------|-------------------|----------|-------|
 | 0.1.0 | v1 | 3.10+ | 0.20+ | 38 | **100%** | 🎉 Initial release with complete widget coverage! |
 | 0.2.0 | v1 | 3.10+ | 0.20+ | 38+ | 100% | TBD - Future enhancements |
@@ -220,7 +220,7 @@ Datadog API has rate limits (typically 1000 requests per hour per organization):
 
 ### Integration Test Strategy
 
-doggonet integration tests should:
+dogonnet integration tests should:
 1. **Use a dedicated test organization** to avoid polluting production
 2. **Clean up test dashboards** after each test run
 3. **Record API responses** (using VCR.py) to avoid rate limits
@@ -255,7 +255,7 @@ For offline development, consider:
 
 ## Versioning Policy
 
-doggonet follows semantic versioning:
+dogonnet follows semantic versioning:
 
 - **MAJOR**: Breaking API changes, incompatible schema changes
 - **MINOR**: New widget support, new features (backward compatible)
@@ -291,7 +291,7 @@ doggonet follows semantic versioning:
 **Next Review Date:** 2026-02-06 (Quarterly review recommended)
 
 **Maintainer Note:** This document should be reviewed and updated whenever:
-1. A new doggonet version is released
+1. A new dogonnet version is released
 2. Datadog announces API changes
 3. New widget types are added
 4. Integration tests reveal compatibility issues

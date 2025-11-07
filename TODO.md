@@ -1,6 +1,6 @@
-# doggonet TODO - Production Readiness
+# dogonnet TODO - Production Readiness
 
-Prioritized task list for making doggonet production-ready for 1.0 release.
+Prioritized task list for making dogonnet production-ready for 1.0 release.
 
 ## 🔥 Critical (Week 1) - Blockers for 1.0
 
@@ -57,15 +57,15 @@ Prioritized task list for making doggonet production-ready for 1.0 release.
 
 ### Type Safety
 - [ ] **Add complete type annotations**
-  - [ ] `src/doggonet/client/dashboard.py`
-  - [ ] `src/doggonet/utils/jsonnet.py`
-  - [ ] `src/doggonet/cli/main.py`
+  - [ ] `src/dogonnet/client/dashboard.py`
+  - [ ] `src/dogonnet/utils/jsonnet.py`
+  - [ ] `src/dogonnet/cli/main.py`
   - Enable mypy strict mode
   - Fix all type errors
 
 ### Error Handling
 - [ ] **Create custom exception hierarchy**
-  - [ ] `src/doggonet/exceptions.py`
+  - [ ] `src/dogonnet/exceptions.py`
     - `DoggonetError` (base)
     - `CompilationError`
     - `APIError`
@@ -125,7 +125,7 @@ Prioritized task list for making doggonet production-ready for 1.0 release.
   - Document usage
 
 - [ ] **Dashboard cloning**
-  - Add `doggonet clone <id>` command
+  - Add `dogonnet clone <id>` command
   - Download and convert to Jsonnet
 
 - [ ] **Batch operations**
@@ -190,7 +190,7 @@ Prioritized task list for making doggonet production-ready for 1.0 release.
   - [ ] Test build: `python -m build`
   - [ ] Test upload to TestPyPI
   - [ ] Upload to PyPI
-  - [ ] Verify installation: `pip install doggonet`
+  - [ ] Verify installation: `pip install dogonnet`
 
 - [ ] **GitHub Release**
   - Create GitHub release

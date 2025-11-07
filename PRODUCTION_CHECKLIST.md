@@ -1,6 +1,6 @@
 # Production Readiness Checklist
 
-This checklist tracks the work needed to make doggonet production-grade.
+This checklist tracks the work needed to make dogonnet production-grade.
 
 ## Documentation & API Versioning
 
@@ -98,7 +98,7 @@ This checklist tracks the work needed to make doggonet production-grade.
 - [ ] **Complete type annotations**
   - Add types to all function signatures
   - Add return type annotations
-  - Run mypy in strict mode: `mypy --strict src/doggonet`
+  - Run mypy in strict mode: `mypy --strict src/dogonnet`
 
 - [ ] **Pydantic models**
   - Create Pydantic models for Dashboard, Widget, Layout

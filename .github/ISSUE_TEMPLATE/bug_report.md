@@ -31,7 +31,7 @@ Paste the full error message here
 **Environment:**
  - OS: [e.g. macOS, Linux, Windows]
  - Python version: [e.g. 3.10, 3.11, 3.12]
- - doggonet version: [e.g. 0.1.0]
+ - dogonnet version: [e.g. 0.1.0]
  - Installation method: [pip, source]
 
 **Additional context**

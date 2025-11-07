@@ -1,6 +1,6 @@
-# doggonet Examples
+# dogonnet Examples
 
-This directory contains example dashboards demonstrating various features of doggonet.
+This directory contains example dashboards demonstrating various features of dogonnet.
 
 ## Examples
 
@@ -13,13 +13,13 @@ A simple dashboard showing the most basic usage:
 **Usage:**
 ```bash
 # Compile to JSON
-doggonet compile basic.jsonnet > basic.json
+dogonnet compile basic.jsonnet > basic.json
 
 # Push to Datadog
-doggonet push basic.jsonnet
+dogonnet push basic.jsonnet
 
 # View locally
-doggonet view basic.jsonnet
+dogonnet view basic.jsonnet
 ```
 
 ### service-health.jsonnet
@@ -36,7 +36,7 @@ This example demonstrates using presets for quick setup with smart defaults.
 ```bash
 # Edit to replace 'my-service' with your service name
 # Then push to Datadog
-doggonet push service-health.jsonnet
+dogonnet push service-health.jsonnet
 ```
 
 ### infrastructure.jsonnet
@@ -49,7 +49,7 @@ Infrastructure monitoring dashboard:
 
 **Usage:**
 ```bash
-doggonet push infrastructure.jsonnet
+dogonnet push infrastructure.jsonnet
 ```
 
 ### golden-signals.jsonnet
@@ -72,7 +72,7 @@ A comprehensive dashboard following Google SRE best practices with the four crit
 ```bash
 # Edit the service and env variables at the top
 # Then compile and push
-doggonet push golden-signals.jsonnet
+dogonnet push golden-signals.jsonnet
 ```
 
 **AI Prompt:** "Create a golden signals dashboard for my payment-api service"
@@ -91,11 +91,11 @@ All examples are designed to be customized for your specific use case:
 Use these examples as templates for your own dashboards:
 
 ```jsonnet
-local doggonet = import 'doggonet/lib/main.libsonnet';
+local dogonnet = import 'dogonnet/lib/main.libsonnet';
 
-local layouts = doggonet.layouts;
-local widgets = doggonet.widgets;
-local presets = doggonet.presets;
+local layouts = dogonnet.layouts;
+local widgets = dogonnet.widgets;
+local presets = dogonnet.presets;
 
 // Your custom dashboard here
 layouts.grid(
@@ -114,9 +114,9 @@ You can use external variables to create environment-specific dashboards:
 
 ```jsonnet
 local env = std.extVar('env');  // production, staging, etc.
-local doggonet = import 'doggonet/lib/main.libsonnet';
+local dogonnet = import 'dogonnet/lib/main.libsonnet';
 
-doggonet.layouts.grid(
+dogonnet.layouts.grid(
   'My Dashboard - ' + env,
   // widgets filtered by env...
 )
@@ -124,7 +124,7 @@ doggonet.layouts.grid(
 
 Compile with:
 ```bash
-doggonet compile my_dashboard.jsonnet --ext-str env=production
+dogonnet compile my_dashboard.jsonnet --ext-str env=production
 ```
 
 ## Need Help?

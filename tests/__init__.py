@@ -1,1 +1,1 @@
-"""Tests for doggonet."""
+"""Tests for dogonnet."""

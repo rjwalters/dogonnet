@@ -6,8 +6,8 @@ Thank you for your interest in contributing to dogonnet! This guide will help yo
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/doggonet.git
-cd doggonet
+git clone https://github.com/yourusername/dogonnet.git
+cd dogonnet
 ```
 
 2. Create a virtual environment:

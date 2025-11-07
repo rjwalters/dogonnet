@@ -1,10 +1,10 @@
-# doggonet Roadmap
+# dogonnet Roadmap
 
-Strategic vision and development roadmap for doggonet.
+Strategic vision and development roadmap for dogonnet.
 
 ## Vision
 
-**doggonet is the grafonnet-lib for Datadog** - a best-in-class Jsonnet library for creating Datadog dashboards programmatically with an exceptional developer experience.
+**dogonnet is the grafonnet-lib for Datadog** - a best-in-class Jsonnet library for creating Datadog dashboards programmatically with an exceptional developer experience.
 
 ### Core Principles
 
@@ -261,7 +261,7 @@ Multi-Cloud Support (Datadog, Grafana, others)
 
 ### Compatibility Matrix
 
-| doggonet | Datadog API | Python | Jsonnet | Status |
+| dogonnet | Datadog API | Python | Jsonnet | Status |
 |----------|-------------|--------|---------|--------|
 | 0.1.x | v1 | 3.10+ | 0.20+ | Alpha |
 | 0.2.x | v1 | 3.10+ | 0.20+ | Beta |
@@ -372,6 +372,6 @@ We welcome community input on the roadmap!
 
 ## Questions?
 
-- GitHub Issues: https://github.com/yourusername/doggonet/issues
-- Discussions: https://github.com/yourusername/doggonet/discussions
+- GitHub Issues: https://github.com/yourusername/dogonnet/issues
+- Discussions: https://github.com/yourusername/dogonnet/discussions
 - Email: team@metta.ai (for now)

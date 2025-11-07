@@ -47,12 +47,12 @@ Status: ✓ ALL EXAMPLES VALID
 
 ```bash
 # Using CLI
-doggonet compile examples/basic.jsonnet
+dogonnet compile examples/basic.jsonnet
 
 # Using Python
 python -c "
 from pathlib import Path
-from doggonet.utils.jsonnet import compile_jsonnet
+from dogonnet.utils.jsonnet import compile_jsonnet
 result = compile_jsonnet(Path('examples/basic.jsonnet'))
 print(result['title'])
 "
@@ -62,7 +62,7 @@ print(result['title'])
 
 ```bash
 # Compile and validate JSON structure
-doggonet compile examples/basic.jsonnet > output.json
+dogonnet compile examples/basic.jsonnet > output.json
 python -c "
 import json
 with open('output.json') as f:
@@ -117,7 +117,7 @@ Examples are automatically validated on every commit:
 RUNTIME ERROR: field does not exist: requestTimeseries
 ```
 
-**Fix:** Check function name in `src/doggonet/lib/presets.libsonnet`
+**Fix:** Check function name in `src/dogonnet/lib/presets.libsonnet`
 - Use `requestRateTimeseries` not `requestTimeseries`
 - Use `errorRateTimeseries` not `errorTimeseries`
 
@@ -139,7 +139,7 @@ presets.cpuTimeseries('CPU', 'avg:cpu{*}')
 ### Error: "couldn't open import"
 
 ```
-RUNTIME ERROR: couldn't open import "doggonet/lib/main.libsonnet"
+RUNTIME ERROR: couldn't open import "dogonnet/lib/main.libsonnet"
 ```
 
 **Fix:** Make sure package is installed correctly
@@ -160,7 +160,7 @@ When creating a new example:
 
 2. **Test compilation**
    ```bash
-   doggonet compile examples/my-new-example.jsonnet
+   dogonnet compile examples/my-new-example.jsonnet
    ```
 
 3. **Run full validation**
@@ -217,7 +217,7 @@ watchmedo shell-command \
 1. Check Python environment:
    ```bash
    which python
-   pip list | grep doggonet
+   pip list | grep dogonnet
    ```
 
 2. Reinstall package:
@@ -234,14 +234,14 @@ watchmedo shell-command \
 
 1. Compile it directly to see full error:
    ```bash
-   doggonet compile examples/failing-example.jsonnet 2>&1
+   dogonnet compile examples/failing-example.jsonnet 2>&1
    ```
 
 2. Check for typos in function names
 
 3. Verify all imports exist
 
-4. Check preset function signatures in `src/doggonet/lib/presets.libsonnet`
+4. Check preset function signatures in `src/dogonnet/lib/presets.libsonnet`
 
 ## Best Practices
 
@@ -257,7 +257,7 @@ watchmedo shell-command \
 
 Check what's actually available:
 ```bash
-grep "^\s\+[a-z]" src/doggonet/lib/presets.libsonnet | head -20
+grep "^\s\+[a-z]" src/dogonnet/lib/presets.libsonnet | head -20
 ```
 
 Common presets:

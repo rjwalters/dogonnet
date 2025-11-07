@@ -1,4 +1,4 @@
-# LLM Agent Guide for doggonet
+# LLM Agent Guide for dogonnet
 
 **Purpose:** Help LLM agents create beautiful Datadog dashboards from user metrics quickly and correctly.
 
@@ -134,9 +134,9 @@ widgets.treemap('Storage by Service', 'sum:storage.bytes{*} by {service}')
 **When to use:** User has a microservice with basic metrics
 
 ```jsonnet
-local doggonet = import 'doggonet/lib/main.libsonnet';
-local layouts = doggonet.layouts;
-local presets = doggonet.presets;
+local dogonnet = import 'dogonnet/lib/main.libsonnet';
+local layouts = dogonnet.layouts;
+local presets = dogonnet.presets;
 
 layouts.grid(
   'Service Health: {{SERVICE_NAME}}',
@@ -176,9 +176,9 @@ layouts.grid(
 **When to use:** User wants to monitor servers/containers
 
 ```jsonnet
-local doggonet = import 'doggonet/lib/main.libsonnet';
-local layouts = doggonet.layouts;
-local presets = doggonet.presets;
+local dogonnet = import 'dogonnet/lib/main.libsonnet';
+local layouts = dogonnet.layouts;
+local presets = dogonnet.presets;
 
 layouts.grid(
   'Infrastructure Monitoring',
@@ -210,10 +210,10 @@ layouts.grid(
 **When to use:** User has business KPIs (revenue, signups, conversions)
 
 ```jsonnet
-local doggonet = import 'doggonet/lib/main.libsonnet';
-local layouts = doggonet.layouts;
-local presets = doggonet.presets;
-local widgets = doggonet.widgets;
+local dogonnet = import 'dogonnet/lib/main.libsonnet';
+local layouts = dogonnet.layouts;
+local presets = dogonnet.presets;
+local widgets = dogonnet.widgets;
 
 layouts.grid(
   'Business Metrics',
@@ -257,9 +257,9 @@ The four golden signals are:
 4. **Saturation** - How full the system is
 
 ```jsonnet
-local doggonet = import 'doggonet/lib/main.libsonnet';
-local layouts = doggonet.layouts;
-local widgets = doggonet.widgets;
+local dogonnet = import 'dogonnet/lib/main.libsonnet';
+local layouts = dogonnet.layouts;
+local widgets = dogonnet.widgets;
 
 layouts.grid(
   'Golden Signals: {{SERVICE}}',
@@ -353,9 +353,9 @@ layouts.grid(
 **When to use:** User mentions "RED metrics", "microservices monitoring"
 
 ```jsonnet
-local doggonet = import 'doggonet/lib/main.libsonnet';
-local layouts = doggonet.layouts;
-local presets = doggonet.presets;
+local dogonnet = import 'dogonnet/lib/main.libsonnet';
+local layouts = dogonnet.layouts;
+local presets = dogonnet.presets;
 
 layouts.grid(
   'RED Metrics: {{SERVICE}}',

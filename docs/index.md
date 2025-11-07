@@ -1,19 +1,19 @@
-# doggonet Documentation
+# dogonnet Documentation
 
 Comprehensive Jsonnet-based framework for creating and managing Datadog dashboards with LLM-friendly documentation.
 
 ## Quick Start
 
 ```bash
-# Install doggonet
-pip install doggonet
+# Install dogonnet
+pip install dogonnet
 
 # Create a new dashboard using presets
 cat > my_dashboard.jsonnet <<'EOF'
-local doggonet = import 'doggonet/lib/main.libsonnet';
+local dogonnet = import 'dogonnet/lib/main.libsonnet';
 
-local layouts = doggonet.layouts;
-local presets = doggonet.presets;
+local layouts = dogonnet.layouts;
+local presets = dogonnet.presets;
 
 layouts.grid(
   'My Service Dashboard',
@@ -37,7 +37,7 @@ layouts.grid(
 EOF
 
 # Push to Datadog
-doggonet push my_dashboard.jsonnet
+dogonnet push my_dashboard.jsonnet
 ```
 
 ## Architecture
@@ -72,31 +72,31 @@ Level 4: Dashboards (your .jsonnet files)
 
 ## CLI Commands
 
-doggonet provides a comprehensive CLI for dashboard management:
+dogonnet provides a comprehensive CLI for dashboard management:
 
 ```bash
 # Push a dashboard to Datadog
-doggonet push my_dashboard.jsonnet
+dogonnet push my_dashboard.jsonnet
 
 # Fetch an existing dashboard
-doggonet fetch abc-123-def > existing.json
+dogonnet fetch abc-123-def > existing.json
 
 # List all dashboards
-doggonet list
+dogonnet list
 
 # Compile Jsonnet to JSON (without pushing)
-doggonet compile my_dashboard.jsonnet > output.json
+dogonnet compile my_dashboard.jsonnet > output.json
 
 # View dashboard locally
-doggonet view my_dashboard.jsonnet
+dogonnet view my_dashboard.jsonnet
 
 # Delete a dashboard
-doggonet delete abc-123-def
+dogonnet delete abc-123-def
 ```
 
 ## Authentication
 
-doggonet uses environment variables for Datadog authentication:
+dogonnet uses environment variables for Datadog authentication:
 
 ```bash
 export DD_API_KEY="your-api-key"
@@ -107,7 +107,7 @@ export DD_SITE="datadoghq.com"  # Optional, defaults to datadoghq.com
 Alternatively, pass them as CLI options:
 
 ```bash
-doggonet push my_dashboard.jsonnet --api-key YOUR_KEY --app-key YOUR_KEY
+dogonnet push my_dashboard.jsonnet --api-key YOUR_KEY --app-key YOUR_KEY
 ```
 
 ## Examples
@@ -126,7 +126,7 @@ Create reusable components for your specific use case:
 
 ```jsonnet
 // my_components.libsonnet
-local widgets = import 'doggonet/lib/widgets.libsonnet';
+local widgets = import 'dogonnet/lib/widgets.libsonnet';
 
 {
   // Custom widget for your specific metrics
@@ -148,15 +148,15 @@ local widgets = import 'doggonet/lib/widgets.libsonnet';
 Use external variables for environment-specific dashboards:
 
 ```bash
-doggonet compile dashboard.jsonnet --ext-str env=production
+dogonnet compile dashboard.jsonnet --ext-str env=production
 ```
 
 ```jsonnet
 // dashboard.jsonnet
 local env = std.extVar('env');
-local doggonet = import 'doggonet/lib/main.libsonnet';
+local dogonnet = import 'dogonnet/lib/main.libsonnet';
 
-doggonet.dashboard.new('My Dashboard - ' + env)
+dogonnet.dashboard.new('My Dashboard - ' + env)
   .addWidget(...)
 ```
 

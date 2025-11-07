@@ -1,12 +1,12 @@
-# doggonet Project Status
+# dogonnet Project Status
 
-**Last Updated:** 2024-11-05
-**Current Version:** 0.1.0-alpha
-**Status:** Alpha - Feature Complete, Production Hardening in Progress
+**Last Updated:** 2024-11-07
+**Current Version:** 0.1.1
+**Status:** Released - Full widget coverage, production ready
 
 ## Executive Summary
 
-doggonet is a Python library for creating Datadog dashboards using Jsonnet - the "grafonnet-lib for Datadog". The library has been successfully extracted from the metta repository and is ready for production hardening.
+dogonnet is a Python library for creating Datadog dashboards using Jsonnet - the "grafonnet-lib for Datadog". The library has been successfully extracted from the metta repository and is production ready.
 
 **Key Achievement:** Fully functional alpha release with 9 widget types, comprehensive CLI, and complete documentation.
 
@@ -16,8 +16,8 @@ doggonet is a Python library for creating Datadog dashboards using Jsonnet - the
 
 ### Core Functionality
 - ✅ **Package Structure** - Clean PyPI-ready package at `/Users/rwalters/GitHub/dogonnet`
-- ✅ **Jsonnet Library** - 9 widgets, layouts, presets (`src/doggonet/lib/`)
-- ✅ **Python Client** - Datadog API client (`src/doggonet/client/`)
+- ✅ **Jsonnet Library** - All 38 widgets, layouts, presets (`src/dogonnet/lib/`)
+- ✅ **Python Client** - Datadog API client (`src/dogonnet/client/`)
 - ✅ **CLI Tools** - 6 commands: push, fetch, list, delete, compile, view
 - ✅ **Compilation** - Jsonnet to JSON with external variable support
 - ✅ **Examples** - 3 working dashboard examples
@@ -42,7 +42,7 @@ doggonet is a Python library for creating Datadog dashboards using Jsonnet - the
 
 ### Installation & Testing
 - ✅ Package installs with `pip install -e .`
-- ✅ CLI works: `doggonet --help`
+- ✅ CLI works: `dogonnet --help`
 - ✅ Examples compile successfully
 - ✅ View/compile commands functional
 
@@ -83,7 +83,7 @@ Total              23     6050        650
 ### Package Structure
 ```
 dogonnet/
-├── src/doggonet/          # Source code
+├── src/dogonnet/          # Source code
 │   ├── cli/               # CLI commands
 │   ├── client/            # Datadog API client
 │   ├── lib/               # Jsonnet library (4 files, 2100 LOC)
@@ -129,15 +129,15 @@ source .venv/bin/activate
 pip install -e .
 
 # Verify installation
-doggonet --help
+dogonnet --help
 
 # Compile example
-doggonet view examples/basic.jsonnet
+dogonnet view examples/basic.jsonnet
 
 # (Requires Datadog credentials to push)
 export DD_API_KEY="your-key"
 export DD_APP_KEY="your-app-key"
-doggonet push examples/basic.jsonnet
+dogonnet push examples/basic.jsonnet
 ```
 
 ## Next Steps (Immediate Actions)
