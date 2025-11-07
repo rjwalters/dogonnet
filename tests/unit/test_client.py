@@ -1,9 +1,10 @@
 """Tests for Datadog client."""
 
 
+from unittest.mock import Mock, patch
+
 import pytest
 import requests
-from unittest.mock import Mock, patch
 
 from doggonet.client.dashboard import DatadogDashboardClient, get_datadog_credentials
 
