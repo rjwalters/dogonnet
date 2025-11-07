@@ -4,7 +4,7 @@ Validate that all example Jsonnet files compile correctly.
 
 This script:
 1. Finds all .jsonnet files in the examples/ directory
-2. Compiles each one using doggonet
+2. Compiles each one using dogonnet
 3. Validates the output has required Datadog dashboard fields
 4. Reports success/failure
 
@@ -15,7 +15,7 @@ Usage:
 import sys
 from pathlib import Path
 
-from doggonet.utils.jsonnet import compile_jsonnet
+from dogonnet.utils.jsonnet import compile_jsonnet
 
 
 def validate_dashboard_json(dashboard: dict, filename: str) -> list[str]:

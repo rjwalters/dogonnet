@@ -1,6 +1,6 @@
-# Contributing to doggonet
+# Contributing to dogonnet
 
-Thank you for your interest in contributing to doggonet! This guide will help you get started.
+Thank you for your interest in contributing to dogonnet! This guide will help you get started.
 
 ## Development Setup
 
@@ -39,7 +39,7 @@ ruff check .
 ruff format .
 
 # Run type checking
-mypy src/doggonet
+mypy src/dogonnet
 
 # Run tests (if available)
 pytest
@@ -54,7 +54,7 @@ pytest
 
 ## Jsonnet Library Guidelines
 
-When contributing to the Jsonnet library (`src/doggonet/lib/`):
+When contributing to the Jsonnet library (`src/dogonnet/lib/`):
 
 1. **Progressive Disclosure**: Support simple one-liner usage with optional complexity
 2. **LLM-Friendly Documentation**: Use `@` tags for structured documentation

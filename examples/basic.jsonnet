@@ -3,10 +3,10 @@
 // This example shows the simplest way to create a Datadog dashboard
 // with a few timeseries widgets.
 
-local doggonet = import '../src/doggonet/lib/main.libsonnet';
+local dogonnet = import '../src/dogonnet/lib/main.libsonnet';
 
-local layouts = doggonet.layouts;
-local widgets = doggonet.widgets;
+local layouts = dogonnet.layouts;
+local widgets = dogonnet.widgets;
 
 layouts.grid(
   'Basic Dashboard',

@@ -1,9 +1,9 @@
-# doggonet 🐶
+# dogonnet 🐶
 
 [![Tests](https://github.com/rjwalters/dogonnet/actions/workflows/test.yml/badge.svg)](https://github.com/rjwalters/dogonnet/actions/workflows/test.yml)
 [![Lint](https://github.com/rjwalters/dogonnet/actions/workflows/lint.yml/badge.svg)](https://github.com/rjwalters/dogonnet/actions/workflows/lint.yml)
 [![codecov](https://codecov.io/gh/rjwalters/dogonnet/branch/main/graph/badge.svg)](https://codecov.io/gh/rjwalters/dogonnet)
-[![PyPI version](https://badge.fury.io/py/doggonet.svg)](https://badge.fury.io/py/doggonet)
+[![PyPI version](https://badge.fury.io/py/dogonnet.svg)](https://badge.fury.io/py/dogonnet)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -11,7 +11,7 @@ A Datadog dashboard templating library using Jsonnet - because good dashboards d
 
 ## Overview
 
-`doggonet` is a Python library that provides a Jsonnet-based templating system for creating Datadog dashboards programmatically. Think of it as [grafonnet-lib](https://github.com/grafana/grafonnet-lib) for Datadog.
+`dogonnet` is a Python library that provides a Jsonnet-based templating system for creating Datadog dashboards programmatically. Think of it as [grafonnet-lib](https://github.com/grafana/grafonnet-lib) for Datadog.
 
 ## Features
 
@@ -25,7 +25,7 @@ A Datadog dashboard templating library using Jsonnet - because good dashboards d
 
 ## AI Agent Support 🤖
 
-`doggonet` is designed to be easily used by AI agents like Claude, ChatGPT, and others. We provide:
+`dogonnet` is designed to be easily used by AI agents like Claude, ChatGPT, and others. We provide:
 
 - **[Agent Guide](docs/AGENT_GUIDE.md)** - Comprehensive guide for AI agents with metric-to-widget mapping, decision trees, and templates
 - **[Cookbook](docs/COOKBOOK.md)** - Copy-paste recipes for common dashboard patterns (Golden Signals, RED metrics, business KPIs)
@@ -40,7 +40,7 @@ A Datadog dashboard templating library using Jsonnet - because good dashboards d
 ## Installation
 
 ```bash
-pip install doggonet
+pip install dogonnet
 ```
 
 ## Quick Start
@@ -48,22 +48,22 @@ pip install doggonet
 ### Create a Dashboard with Jsonnet
 
 ```jsonnet
-local doggonet = import 'doggonet/lib/main.libsonnet';
+local dogonnet = import 'dogonnet/lib/main.libsonnet';
 
-doggonet.dashboard.new(
+dogonnet.dashboard.new(
   title='My Service Dashboard',
   tags=['service:my-service'],
 )
 .addRow(
-  doggonet.row.new(title='Key Metrics')
+  dogonnet.row.new(title='Key Metrics')
   .addPanel(
-    doggonet.widgets.timeseries(
+    dogonnet.widgets.timeseries(
       title='Request Rate',
       queries=['avg:http.requests{service:my-service}']
     )
   )
   .addPanel(
-    doggonet.widgets.timeseries(
+    dogonnet.widgets.timeseries(
       title='Error Rate',
       queries=['avg:http.errors{service:my-service}']
     )
@@ -75,22 +75,22 @@ doggonet.dashboard.new(
 
 ```bash
 # Compile and push
-doggonet push my-dashboard.jsonnet
+dogonnet push my-dashboard.jsonnet
 
 # Export without pushing
-doggonet compile my-dashboard.jsonnet > output.json
+dogonnet compile my-dashboard.jsonnet > output.json
 
 # Fetch existing dashboard
-doggonet fetch my-dashboard-id > existing.json
+dogonnet fetch my-dashboard-id > existing.json
 ```
 
 ## Library Structure
 
-- `doggonet.lib.widgets` - Widget builders (timeseries, query_value, heatmap, etc.)
-- `doggonet.lib.layouts` - Layout utilities (rows, columns, grid)
-- `doggonet.lib.presets` - Opinionated presets for common patterns
-- `doggonet.client` - Datadog API client
-- `doggonet.cli` - Command-line tools
+- `dogonnet.lib.widgets` - Widget builders (timeseries, query_value, heatmap, etc.)
+- `dogonnet.lib.layouts` - Layout utilities (rows, columns, grid)
+- `dogonnet.lib.presets` - Opinionated presets for common patterns
+- `dogonnet.client` - Datadog API client
+- `dogonnet.cli` - Command-line tools
 
 ## Documentation
 

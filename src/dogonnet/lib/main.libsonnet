@@ -1,11 +1,11 @@
-// doggonet - Datadog dashboard templating library
+// dogonnet - Datadog dashboard templating library
 // Main entry point for the Jsonnet library
 //
 // Usage:
-//   local doggonet = import 'doggonet/lib/main.libsonnet';
+//   local dogonnet = import 'dogonnet/lib/main.libsonnet';
 //
-//   doggonet.dashboard.new('My Dashboard')
-//     .addWidget(doggonet.widgets.timeseries('CPU', 'avg:system.cpu{*}'))
+//   dogonnet.dashboard.new('My Dashboard')
+//     .addWidget(dogonnet.widgets.timeseries('CPU', 'avg:system.cpu{*}'))
 //
 
 {

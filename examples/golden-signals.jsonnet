@@ -3,9 +3,9 @@
 //
 // Replace 'payment-api' with your service name
 
-local doggonet = import 'doggonet/lib/main.libsonnet';
-local layouts = doggonet.layouts;
-local widgets = doggonet.widgets;
+local dogonnet = import 'dogonnet/lib/main.libsonnet';
+local layouts = dogonnet.layouts;
+local widgets = dogonnet.widgets;
 
 // Configuration
 local service = 'payment-api';

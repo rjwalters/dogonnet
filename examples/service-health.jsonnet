@@ -3,11 +3,11 @@
 // This example demonstrates a comprehensive service health dashboard
 // using presets for quick setup with smart defaults.
 
-local doggonet = import '../src/doggonet/lib/main.libsonnet';
+local dogonnet = import '../src/dogonnet/lib/main.libsonnet';
 
-local layouts = doggonet.layouts;
-local widgets = doggonet.widgets;
-local presets = doggonet.presets;
+local layouts = dogonnet.layouts;
+local widgets = dogonnet.widgets;
+local presets = dogonnet.presets;
 
 local service = 'my-service';
 

@@ -5,7 +5,7 @@ from unittest.mock import Mock, patch
 import pytest
 import requests
 
-from doggonet.client.dashboard import DatadogDashboardClient, get_datadog_credentials
+from dogonnet.client.dashboard import DatadogDashboardClient, get_datadog_credentials
 
 
 def test_get_credentials_from_env(mock_datadog_credentials):
@@ -65,7 +65,7 @@ def test_create_session():
     assert client._session.headers["Content-Type"] == "application/json"
 
 
-@patch("doggonet.client.dashboard.requests.Session")
+@patch("dogonnet.client.dashboard.requests.Session")
 def test_list_dashboards(mock_session_class):
     """Test listing dashboards."""
     # Setup mock
@@ -87,7 +87,7 @@ def test_list_dashboards(mock_session_class):
     mock_session.get.assert_called_once_with("https://api.datadoghq.com/api/v1/dashboard")
 
 
-@patch("doggonet.client.dashboard.requests.Session")
+@patch("dogonnet.client.dashboard.requests.Session")
 def test_get_dashboard(mock_session_class):
     """Test getting a specific dashboard."""
     # Setup mock
@@ -106,7 +106,7 @@ def test_get_dashboard(mock_session_class):
     mock_session.get.assert_called_once_with("https://api.datadoghq.com/api/v1/dashboard/dash-123")
 
 
-@patch("doggonet.client.dashboard.requests.Session")
+@patch("dogonnet.client.dashboard.requests.Session")
 def test_dashboard_exists_true(mock_session_class):
     """Test checking if dashboard exists (returns True)."""
     # Setup mock
@@ -123,7 +123,7 @@ def test_dashboard_exists_true(mock_session_class):
     assert exists is True
 
 
-@patch("doggonet.client.dashboard.requests.Session")
+@patch("dogonnet.client.dashboard.requests.Session")
 def test_dashboard_exists_false(mock_session_class):
     """Test checking if dashboard exists (returns False)."""
     # Setup mock
@@ -140,7 +140,7 @@ def test_dashboard_exists_false(mock_session_class):
     assert exists is False
 
 
-@patch("doggonet.client.dashboard.requests.Session")
+@patch("dogonnet.client.dashboard.requests.Session")
 def test_dashboard_exists_handles_exception(mock_session_class):
     """Test dashboard_exists handles exceptions gracefully."""
     # Setup mock to raise exception
@@ -155,7 +155,7 @@ def test_dashboard_exists_handles_exception(mock_session_class):
     assert exists is False
 
 
-@patch("doggonet.client.dashboard.requests.Session")
+@patch("dogonnet.client.dashboard.requests.Session")
 def test_create_dashboard(mock_session_class):
     """Test creating a dashboard."""
     # Setup mock
@@ -185,7 +185,7 @@ def test_create_dashboard(mock_session_class):
     assert posted_json["title"] == "New Dashboard"
 
 
-@patch("doggonet.client.dashboard.requests.Session")
+@patch("dogonnet.client.dashboard.requests.Session")
 def test_update_dashboard(mock_session_class):
     """Test updating a dashboard."""
     # Setup mock
@@ -214,7 +214,7 @@ def test_update_dashboard(mock_session_class):
     assert "author_handle" not in posted_json
 
 
-@patch("doggonet.client.dashboard.requests.Session")
+@patch("dogonnet.client.dashboard.requests.Session")
 def test_delete_dashboard(mock_session_class):
     """Test deleting a dashboard."""
     # Setup mock
@@ -232,7 +232,7 @@ def test_delete_dashboard(mock_session_class):
     mock_session.delete.assert_called_once_with("https://api.datadoghq.com/api/v1/dashboard/dash-123")
 
 
-@patch("doggonet.client.dashboard.requests.Session")
+@patch("dogonnet.client.dashboard.requests.Session")
 def test_list_metrics(mock_session_class):
     """Test listing metrics."""
     # Setup mock
@@ -252,7 +252,7 @@ def test_list_metrics(mock_session_class):
     assert metrics == sorted(metrics)
 
 
-@patch("doggonet.client.dashboard.requests.Session")
+@patch("dogonnet.client.dashboard.requests.Session")
 def test_list_metrics_with_search(mock_session_class):
     """Test listing metrics with search filter."""
     # Setup mock
@@ -272,7 +272,7 @@ def test_list_metrics_with_search(mock_session_class):
     assert "app.requests" not in metrics
 
 
-@patch("doggonet.client.dashboard.requests.Session")
+@patch("dogonnet.client.dashboard.requests.Session")
 def test_get_metric_metadata(mock_session_class):
     """Test getting metric metadata."""
     # Setup mock
@@ -291,7 +291,7 @@ def test_get_metric_metadata(mock_session_class):
     mock_session.get.assert_called_once_with("https://api.datadoghq.com/api/v1/metrics/system.cpu.user")
 
 
-@patch("doggonet.client.dashboard.requests.Session")
+@patch("dogonnet.client.dashboard.requests.Session")
 def test_list_tags(mock_session_class):
     """Test listing tags."""
     # Setup mock

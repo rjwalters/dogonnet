@@ -1,4 +1,4 @@
-"""doggonet CLI - Datadog dashboard management with Jsonnet."""
+"""dogonnet CLI - Datadog dashboard management with Jsonnet."""
 
 import json
 import sys
@@ -8,8 +8,8 @@ import click
 from rich.console import Console
 from rich.table import Table
 
-from doggonet.client import DatadogDashboardClient
-from doggonet.utils.jsonnet import compile_jsonnet, is_jsonnet_file, load_dashboard
+from dogonnet.client import DatadogDashboardClient
+from dogonnet.utils.jsonnet import compile_jsonnet, is_jsonnet_file, load_dashboard
 
 console = Console()
 
@@ -17,7 +17,7 @@ console = Console()
 @click.group()
 @click.version_option(version="0.1.0")
 def main():
-    """doggonet - Datadog dashboard templating with Jsonnet.
+    """dogonnet - Datadog dashboard templating with Jsonnet.
 
     Create, manage, and deploy Datadog dashboards using Jsonnet templates.
     """

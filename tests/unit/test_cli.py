@@ -2,7 +2,7 @@
 
 from click.testing import CliRunner
 
-from doggonet.cli.main import main
+from dogonnet.cli.main import main
 
 
 def test_cli_help():
@@ -11,7 +11,7 @@ def test_cli_help():
     result = runner.invoke(main, ["--help"])
 
     assert result.exit_code == 0
-    assert "doggonet" in result.output
+    assert "dogonnet" in result.output
     assert "Datadog dashboard templating" in result.output
 
 

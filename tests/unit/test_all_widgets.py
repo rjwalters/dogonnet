@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from doggonet.utils.jsonnet import compile_jsonnet
+from dogonnet.utils.jsonnet import compile_jsonnet
 
 
 @pytest.fixture
@@ -19,7 +19,7 @@ def test_all_38_widgets_compile(tmp_path, src_dir):
     # Create a comprehensive test dashboard with all widget types
     test_file = tmp_path / "all_widgets.jsonnet"
     test_file.write_text("""
-    local widgets = import 'doggonet/lib/widgets.libsonnet';
+    local widgets = import 'dogonnet/lib/widgets.libsonnet';
 
     {
       title: 'All Widgets Test',
@@ -177,7 +177,7 @@ def test_individual_widget_compilation(tmp_path, src_dir, widget_type, widget_ca
 
     test_file = tmp_path / f"test_{widget_type}.jsonnet"
     test_file.write_text(f"""
-    local widgets = import 'doggonet/lib/widgets.libsonnet';
+    local widgets = import 'dogonnet/lib/widgets.libsonnet';
 
     {{
       title: 'Test Dashboard',

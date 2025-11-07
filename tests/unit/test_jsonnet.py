@@ -7,7 +7,7 @@ from unittest.mock import Mock
 
 import pytest
 
-from doggonet.utils.jsonnet import compile_jsonnet, is_jsonnet_file, load_dashboard
+from dogonnet.utils.jsonnet import compile_jsonnet, is_jsonnet_file, load_dashboard
 
 
 def test_is_jsonnet_file():
@@ -102,7 +102,7 @@ def test_compile_with_cli_fallback(tmp_path, monkeypatch):
     mock_result = Mock()
     mock_result.stdout = '{"title": "Test", "widgets": []}'
     mock_run.return_value = mock_result
-    monkeypatch.setattr("doggonet.utils.jsonnet.subprocess.run", mock_run)
+    monkeypatch.setattr("dogonnet.utils.jsonnet.subprocess.run", mock_run)
 
     # Also make sure _jsonnet import fails
     original_import = __import__
@@ -144,7 +144,7 @@ def test_compile_cli_with_ext_vars(tmp_path, monkeypatch):
     mock_result = Mock()
     mock_result.stdout = '{"title": "Test"}'
     mock_run.return_value = mock_result
-    monkeypatch.setattr("doggonet.utils.jsonnet.subprocess.run", mock_run)
+    monkeypatch.setattr("dogonnet.utils.jsonnet.subprocess.run", mock_run)
 
     original_import = __import__
 
@@ -185,7 +185,7 @@ def test_compile_cli_with_jpathdir(tmp_path, monkeypatch):
     mock_result = Mock()
     mock_result.stdout = '{"title": "Test"}'
     mock_run.return_value = mock_result
-    monkeypatch.setattr("doggonet.utils.jsonnet.subprocess.run", mock_run)
+    monkeypatch.setattr("dogonnet.utils.jsonnet.subprocess.run", mock_run)
 
     original_import = __import__
 
@@ -222,7 +222,7 @@ def test_compile_cli_not_found(tmp_path, monkeypatch):
     # Mock FileNotFoundError (jsonnet command not found)
     mock_run = Mock()
     mock_run.side_effect = FileNotFoundError("jsonnet not found")
-    monkeypatch.setattr("doggonet.utils.jsonnet.subprocess.run", mock_run)
+    monkeypatch.setattr("dogonnet.utils.jsonnet.subprocess.run", mock_run)
 
     original_import = __import__
 
@@ -256,7 +256,7 @@ def test_compile_cli_compilation_error(tmp_path, monkeypatch):
     error = subprocess.CalledProcessError(1, "jsonnet", stderr="STATIC ERROR: syntax error")
     mock_run = Mock()
     mock_run.side_effect = error
-    monkeypatch.setattr("doggonet.utils.jsonnet.subprocess.run", mock_run)
+    monkeypatch.setattr("dogonnet.utils.jsonnet.subprocess.run", mock_run)
 
     original_import = __import__
 
@@ -291,7 +291,7 @@ def test_compile_cli_invalid_json_output(tmp_path, monkeypatch):
     mock_result = Mock()
     mock_result.stdout = "not valid json {"
     mock_run.return_value = mock_result
-    monkeypatch.setattr("doggonet.utils.jsonnet.subprocess.run", mock_run)
+    monkeypatch.setattr("dogonnet.utils.jsonnet.subprocess.run", mock_run)
 
     original_import = __import__
 

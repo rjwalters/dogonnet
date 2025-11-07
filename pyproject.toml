@@ -1,5 +1,5 @@
 [project]
-name = "doggonet"
+name = "dogonnet"
 version = "0.1.0"
 description = "AI-friendly Datadog dashboard templating library using Jsonnet - create beautiful dashboards from natural language"
 readme = "README.md"
@@ -60,7 +60,7 @@ dev = [
 ]
 
 [project.scripts]
-doggonet = "doggonet.cli:main"
+dogonnet = "dogonnet.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/rjwalters/dogonnet"
@@ -104,7 +104,7 @@ addopts = [
 ]
 
 [tool.coverage.run]
-source = ["src/doggonet"]
+source = ["src/dogonnet"]
 omit = ["tests/*"]
 
 [tool.coverage.report]
